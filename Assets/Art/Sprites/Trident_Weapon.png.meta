@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 11023ba065a444f4397d72f539eb7bf4
+guid: a962771e144723d49a69f310061aa5a2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7416686705017423735
-    second: elgato_0
+      213: 2106009464756377864
+    second: Trident_Weapon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: elgato_0
+      name: Trident_Weapon_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 45
         y: 0
-        width: 446
-        height: 376
+        width: 48
+        height: 292
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 988f211bcb2a21990800000000000000
-      internalID: -7416686705017423735
+      spriteID: 8091a68337c0a3d10800000000000000
+      internalID: 2106009464756377864
       vertices: []
       indices: 
       edges: []
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Trident_Weapon_0: 2106009464756377864
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
