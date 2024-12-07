@@ -3,29 +3,33 @@ using UnityEngine;
 public class TridentMovement : MonoBehaviour
 {
     private Vector3 mousePos;
-    public Transform trident;
+    private GameObject tridentThrown;
+    private bool thrown;
+    public Transform tridentHeld;
     [SerializeField] Camera mainCamera;
     [SerializeField] GameObject tridentProjectile;
 
     void Start()
     {
-        trident = transform.GetChild(0);
+        tridentHeld = transform.GetChild(0);
     }
 
    void Update()
     {
+
+        //Get mouse position and find direction between player and mouse
         mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = (mousePos - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        trident.eulerAngles = new Vector3(0, 0, angle);
-        
-        Debug.DrawRay(transform.position, direction * 1000, Color.red);
 
-        if (trident.gameObject.activeSelf && Input.GetButtonDown("Fire1"))
+        //Calculate angle and rotate trident
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        tridentHeld.eulerAngles = new Vector3(0, 0, angle);
+
+        if (tridentHeld.gameObject.activeSelf && Input.GetButtonDown("Fire1"))
         {
-            GameObject projectile = Instantiate(tridentProjectile, transform.position, trident.rotation);
-            projectile.GetComponent<TridentThrown>().move(direction);
-            projectile.GetComponent<TridentThrown>().originObj = this.transform;
+            tridentThrown = Instantiate(tridentProjectile, transform.position, tridentHeld.rotation);
+            tridentThrown.GetComponent<TridentThrown>().move(direction);
+            tridentThrown.GetComponent<TridentThrown>().originObj = this.transform;
             //trident.gameObject.SetActive(false);
         }
         
