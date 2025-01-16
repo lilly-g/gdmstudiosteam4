@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 boxSize;
     public float castDistance;
     public LayerMask groundLayer;
+    public bool pulling = false;
 
     void Start()
     {
@@ -16,12 +17,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        player.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, player.linearVelocity.y);
-
-        if (Input.GetKey(KeyCode.Space) && isGrounded())
+        if (!pulling)
         {
-            player.linearVelocity = new Vector2(player.linearVelocity.x, jump);
+            player.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, player.linearVelocity.y);
+
+            if (Input.GetKey(KeyCode.Space) && isGrounded())
+            {
+                player.linearVelocity = new Vector2(player.linearVelocity.x, jump);
+            }
         }
+    }
+
+    public void pullPlayer(Vector3 point)
+    {
+        pulling = true;
+        Vector3 direction = (point - transform.position).normalized * 50;
+        player.linearVelocity = new Vector2(direction.x, direction.y);
     }
 
     private bool isGrounded()

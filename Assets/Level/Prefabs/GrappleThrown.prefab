@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 7468285432865507727}
   - component: {fileID: 5693101056406633774}
   m_Layer: 8
-  m_Name: TridentThrown
+  m_Name: GrappleThrown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8454e435b8133b47869578fe8fb6e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originObj: {fileID: 0}
 --- !u!70 &5693101056406633774
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

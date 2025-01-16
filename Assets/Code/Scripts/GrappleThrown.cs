@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class TridentThrown : MonoBehaviour
+public class GrappleThrown : MonoBehaviour
 {
-    private Rigidbody2D trident;
+    private Rigidbody2D grapple;
     public Transform originObj;
     private bool airBorne = true;
-    private bool returning = false;
-    private float speed = 15.0f;
+    private float speed = 45.0f;
 
     void Start()
     {
-       trident = GetComponent<Rigidbody2D>();
+       grapple = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -20,8 +19,8 @@ public class TridentThrown : MonoBehaviour
 
     public void move(Vector2 direction)
     {
-        trident = GetComponent<Rigidbody2D>();
-        trident.linearVelocity = direction * speed;
+        grapple = GetComponent<Rigidbody2D>();
+        grapple.linearVelocity = direction * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,8 +34,12 @@ public class TridentThrown : MonoBehaviour
 
     private void stuck()
     {
-        Debug.Log("Hit");
-        trident.linearVelocity = Vector2.zero;
-        trident.constraints = RigidbodyConstraints2D.FreezeAll;
+        grapple.linearVelocity = Vector2.zero;
+        grapple.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    public bool IsAirBorne()
+    {
+        return airBorne;
     }
 }
