@@ -30,10 +30,17 @@ namespace Movement
 
         private void EvaluateCollision(Collision2D collision)
         {
-            for (int i = 0; i < collision.contactCount; i++)
+            if (collision.gameObject.CompareTag("Spike"))
             {
-                _normal = collision.GetContact(i).normal;
-                OnGround |= _normal.y >= 0.9f;
+                Debug.Log("Kill");
+            }
+            else if (collision.gameObject.CompareTag("Ground"))
+            {
+                for (int i = 0; i < collision.contactCount; i++)
+                {
+                    _normal = collision.GetContact(i).normal;
+                    OnGround |= _normal.y >= 0.9f;
+                }
             }
         }
 

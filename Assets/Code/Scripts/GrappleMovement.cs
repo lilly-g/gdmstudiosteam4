@@ -25,6 +25,7 @@ public class GrappleMovement : MonoBehaviour
 
     void Start()
     {
+        mainCamera = Camera.main;
         joint = GetComponent<DistanceJoint2D>();
         joint.enabled = false;
         grappleHeld = transform.GetChild(0);
@@ -36,8 +37,10 @@ public class GrappleMovement : MonoBehaviour
 
         //Get mouse position and find direction between player and mouse
         mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = (mousePos - transform.position).normalized;
-
+        Vector3 direction = (mousePos - transform.position);
+        direction.z = 0;
+        direction.Normalize();
+        
         //Calculate angle and rotate held grapple
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         grappleHeld.eulerAngles = new Vector3(0, 0, angle);
