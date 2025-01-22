@@ -12,6 +12,7 @@ public class GrappleMovement : MonoBehaviour
     */
 
     private Vector3 mousePos;
+    private Vector3 direction;
     private GameObject grappleThrown;
     private GrappleThrown grappleScript;
     private Rigidbody2D player;
@@ -32,12 +33,12 @@ public class GrappleMovement : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
     }
 
-   void Update()
+    void Update()
     {
 
         //Get mouse position and find direction between player and mouse
         mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = (mousePos - transform.position);
+        direction = (mousePos - transform.position);
         direction.z = 0;
         direction.Normalize();
         
@@ -56,29 +57,48 @@ public class GrappleMovement : MonoBehaviour
         //when primary fire is pressed and grapple is not thrown, throw grapple
         if (grappleHeld.gameObject.activeSelf && Input.GetButtonDown("Fire1"))
         {
-            grappleThrown = Instantiate(grappleProjectile, transform.position, grappleHeld.rotation);
-            grappleScript = grappleThrown.GetComponent<GrappleThrown>();
-            grappleScript.originObj = this.transform;
-            grappleScript.move(direction);
-
-            grappleHeld.gameObject.SetActive(false);
-
-            rope.setUpLine(this.transform, grappleThrown.transform);
+            throwGrapple();
         }
         //if grapple has been thrown, when secondary fire is pressed, return grapple to player
         else if (!(grappleHeld.gameObject.activeSelf) && Input.GetButtonDown("Fire2"))
         {
-            Destroy(grappleThrown);
-            joint.enabled = false;
-            grappleHeld.gameObject.SetActive(true);
+            returnGrapple();
         }
         //if grapple has been thrown and has hit a wall, when primary fire is pressed, pull player to grapple
         else if (!(grappleHeld.gameObject.activeSelf) && !grappleScript.IsAirBorne() && Input.GetButtonDown("Fire1"))
         {
             joint.distance = grappleDistance;
-            Vector3 pull_direction = (grappleThrown.transform.position - transform.position).normalized * 50;
-            player.linearVelocity = new Vector2(pull_direction.x, pull_direction.y);
+            pullPlayer((grappleThrown.transform.position - transform.position).normalized);
         }
-        
+    }
+
+    public void throwGrapple()
+    {
+        grappleThrown = Instantiate(grappleProjectile, transform.position, grappleHeld.rotation);
+        grappleScript = grappleThrown.GetComponent<GrappleThrown>();
+        grappleScript.originObj = this.transform;
+        grappleScript.move(direction);
+
+        grappleHeld.gameObject.SetActive(false);
+
+        rope.setUpLine(this.transform, grappleThrown.transform);
+    }
+
+    public void pullPlayer(Vector3 direction)
+    {
+        Vector3 pull_direction = direction * 50;
+        player.linearVelocity = new Vector2(pull_direction.x, pull_direction.y);
+    }
+
+    public void returnGrapple()
+    {
+        Destroy(grappleThrown);
+        joint.enabled = false;
+        grappleHeld.gameObject.SetActive(true);
+    }
+
+    public Vector3 getDirection()
+    {
+        return direction;
     }
 }

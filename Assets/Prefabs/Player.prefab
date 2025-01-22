@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1198221431900126485}
   - component: {fileID: 895039814077209845}
   - component: {fileID: 1608018622888645024}
+  - component: {fileID: 2892675976773743133}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -263,6 +264,18 @@ MonoBehaviour:
   _maxAirJumps: 0
   _downwardMovementMultiplier: 3
   _upwardMovementMultiplier: 1.7
+--- !u!114 &2892675976773743133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105505171571721645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18419ef92d9294c489ea58a2e59940cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3119722845176891918
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +349,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7320116648715915528}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

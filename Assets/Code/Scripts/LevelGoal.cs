@@ -10,6 +10,9 @@ public class Goal : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Level Complete");
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Level Complete");
+        }
     }
 }
