@@ -50,6 +50,6 @@ public class DashCard : Card
     override public void Play(GameObject pObj)
     {
         Debug.Log("Dash Card Played!");
-        pObj.GetComponent<GrappleMovement>().pullPlayer(pObj.GetComponent<GrappleMovement>().getDirection());
+        pObj.GetComponent<GrappleMovement>().pullPlayer(pObj.GetComponent<GrappleMovement>().getDirection(), 25);
     }
 }

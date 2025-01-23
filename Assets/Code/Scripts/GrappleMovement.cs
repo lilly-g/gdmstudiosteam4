@@ -68,7 +68,7 @@ public class GrappleMovement : MonoBehaviour
         else if (!(grappleHeld.gameObject.activeSelf) && !grappleScript.IsAirBorne() && Input.GetButtonDown("Fire1"))
         {
             joint.distance = grappleDistance;
-            pullPlayer((grappleThrown.transform.position - transform.position).normalized);
+            pullPlayer((grappleThrown.transform.position - transform.position).normalized, 50);
         }
     }
 
@@ -84,9 +84,9 @@ public class GrappleMovement : MonoBehaviour
         rope.setUpLine(this.transform, grappleThrown.transform);
     }
 
-    public void pullPlayer(Vector3 direction)
+    public void pullPlayer(Vector3 direction, int strength)
     {
-        Vector3 pull_direction = direction * 50;
+        Vector3 pull_direction = direction * strength;
         player.linearVelocity = new Vector2(pull_direction.x, pull_direction.y);
     }
 
