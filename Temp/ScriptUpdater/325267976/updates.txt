@@ -1,1 +1,0 @@
-Temp/ScriptUpdater/325267976/1708176757_MovingPlatformScript.cs => Assets/MovingPlatformScript.cs
