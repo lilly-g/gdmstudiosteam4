@@ -3,18 +3,13 @@ using UnityEngine;
 public class GrappleThrown : MonoBehaviour
 {
     private Rigidbody2D grapple;
-    public Transform originObj;
-    private bool airBorne = true;
+    public GrappleMovement originObj;
+
     private float speed = 45.0f;
 
     void Start()
     {
        grapple = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-        
     }
 
     public void move(Vector2 direction)
@@ -27,7 +22,7 @@ public class GrappleThrown : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            airBorne = false;
+            originObj.grappled = true;
             stuck();
         }
     }
@@ -36,10 +31,5 @@ public class GrappleThrown : MonoBehaviour
     {
         grapple.linearVelocity = Vector2.zero;
         grapple.constraints = RigidbodyConstraints2D.FreezeAll;
-    }
-
-    public bool IsAirBorne()
-    {
-        return airBorne;
     }
 }

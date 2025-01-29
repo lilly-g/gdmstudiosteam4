@@ -13,13 +13,17 @@ public class GrappleMovement : MonoBehaviour
 
     private Vector3 mousePos;
     private Vector3 direction;
-    private GameObject grappleThrown;
-    private GrappleThrown grappleScript;
+
+    private bool thrown;
+    public bool grappled;
+
+    private GrappleThrown grappleThrown;
+    private PlayerController playerController;
     private Rigidbody2D player;
     private DistanceJoint2D joint;
-    private bool thrown;
-    public Transform grappleHeld;
-    [SerializeField] Camera mainCamera;
+    private Transform grappleHeld;
+    private Camera mainCamera;
+
     [SerializeField] GameObject grappleProjectile;
     [SerializeField] RopeController rope;
     [SerializeField] private float grappleDistance = 1f;
@@ -27,10 +31,14 @@ public class GrappleMovement : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
+
         joint = GetComponent<DistanceJoint2D>();
         joint.enabled = false;
-        grappleHeld = transform.GetChild(0);
+
         player = GetComponent<Rigidbody2D>();
+        playerController = GetComponent<PlayerController>();
+
+        grappleHeld = transform.GetChild(0);
     }
 
     void Update()
@@ -47,7 +55,7 @@ public class GrappleMovement : MonoBehaviour
         grappleHeld.eulerAngles = new Vector3(0, 0, angle);
 
         //if grapple has been thrown and has hit a wall, fix maximum joint distance
-        if (grappleThrown != null && !grappleScript.IsAirBorne() && joint.enabled == false)
+        if (grappled && joint.enabled == false)
         {
             joint.connectedBody = grappleThrown.GetComponent<Rigidbody2D>();
             joint.distance = Vector2.Distance(transform.position, grappleThrown.transform.position);
@@ -55,17 +63,17 @@ public class GrappleMovement : MonoBehaviour
         }
 
         //when primary fire is pressed and grapple is not thrown, throw grapple
-        if (grappleHeld.gameObject.activeSelf && Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !thrown)
         {
             throwGrapple();
         }
         //if grapple has been thrown, when secondary fire is pressed, return grapple to player
-        else if (!(grappleHeld.gameObject.activeSelf) && Input.GetButtonDown("Fire2"))
+        else if (Input.GetButtonDown("Fire2") && thrown)
         {
             returnGrapple();
         }
         //if grapple has been thrown and has hit a wall, when primary fire is pressed, pull player to grapple
-        else if (!(grappleHeld.gameObject.activeSelf) && !grappleScript.IsAirBorne() && Input.GetButtonDown("Fire1"))
+        else if (Input.GetButtonDown("Fire1") && grappled)
         {
             joint.distance = grappleDistance;
             pullPlayer((grappleThrown.transform.position - transform.position).normalized, 50);
@@ -74,14 +82,15 @@ public class GrappleMovement : MonoBehaviour
 
     public void throwGrapple()
     {
-        grappleThrown = Instantiate(grappleProjectile, transform.position, grappleHeld.rotation);
-        grappleScript = grappleThrown.GetComponent<GrappleThrown>();
-        grappleScript.originObj = this.transform;
-        grappleScript.move(direction);
+        grappleThrown = Instantiate(grappleProjectile, transform.position, grappleHeld.rotation).GetComponent<GrappleThrown>();
+        grappleThrown.originObj = this;
+        grappleThrown.move(direction);
 
         grappleHeld.gameObject.SetActive(false);
 
         rope.setUpLine(this.transform, grappleThrown.transform);
+
+        thrown = true;
     }
 
     public void pullPlayer(Vector3 direction, int strength)
@@ -92,9 +101,14 @@ public class GrappleMovement : MonoBehaviour
 
     public void returnGrapple()
     {
-        Destroy(grappleThrown);
+        Destroy(grappleThrown.gameObject);
         joint.enabled = false;
         grappleHeld.gameObject.SetActive(true);
+
+        thrown = false;
+        grappled = false;
+
+        playerController.GrappleReleased();
     }
 
     public Vector3 getDirection()
