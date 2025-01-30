@@ -19,9 +19,7 @@ MonoBehaviour:
   VerticalDeadZoneThreshold: 0.3
   HorizontalDeadZoneThreshold: 0.1
   MaxSpeed: 20
-  MaxSpeedGrappled: 50
   Acceleration: 200
-  GrappleAcceleration: 200
   GroundDeceleration: 200
   AirDeceleration: 30
   GroundingForce: -1.5
@@ -31,5 +29,9 @@ MonoBehaviour:
   FallAcceleration: 110
   JumpEndEarlyGravityModifier: 4
   CoyoteTime: 0.15
-  GrappleGrace: 0.3
   JumpBuffer: 0.2
+  GrappleAcceleration: 200
+  MaxSpeedGrappled: 50
+  GrappleGrace: 0.3
+  DashSpeed: 40
+  DashTime: 0.2

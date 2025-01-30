@@ -97,7 +97,7 @@ public class GrapplingGun : MonoBehaviour
         }
     }
 
-    void SetGrapplePoint()
+    public void SetGrapplePoint()
     {
         //uses a raycast from player to mouse position to find grapplepoint
         Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;

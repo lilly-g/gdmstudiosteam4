@@ -185,7 +185,11 @@ using UnityEngine;
         private void HandleGravity()
         {
             //if on ground, apply grounding force
-            if (_grounded && _frameVelocity.y <= 0f)
+            if (_time < frameDashed + _stats.DashTime)
+            {
+                _frameVelocity = dashDirection * _stats.DashSpeed;
+            }
+            else if (_grounded && _frameVelocity.y <= 0f)
             {
                 _frameVelocity.y = _stats.GroundingForce;
             }
@@ -206,6 +210,14 @@ using UnityEngine;
                 }
             }
         }
+
+        #endregion
+
+        #region Other
+
+        private bool isDashing = false;
+        private float frameDashed = float.MinValue;
+        private Vector2 dashDirection;
 
         //called once when grapple begins
         public void Grappled()
@@ -233,6 +245,14 @@ using UnityEngine;
             //enables mid-air jump after releasing grapple
             _coyoteUsable = true;
             _frameLeftGrounded = _time;
+        }
+
+        public void Dash()
+        {
+            isDashing = true;
+
+            dashDirection = _frameInput.Move;
+            frameDashed = _time;
         }
 
         #endregion

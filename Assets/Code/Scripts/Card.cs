@@ -36,7 +36,7 @@ public class GrappleCard : Card
     override public void Play(GameObject pObj)
     {
         Debug.Log("Grapple Card Played!");
-        pObj.GetComponent<GrappleMovement>().throwGrapple();
+        pObj.GetComponentInChildren<GrapplingGun>().SetGrapplePoint();
     }
 }
 
@@ -50,6 +50,6 @@ public class DashCard : Card
     override public void Play(GameObject pObj)
     {
         Debug.Log("Dash Card Played!");
-        pObj.GetComponent<GrappleMovement>().pullPlayer(pObj.GetComponent<GrappleMovement>().getDirection(), 25);
+        pObj.GetComponent<PlayerController>().Dash();
     }
 }

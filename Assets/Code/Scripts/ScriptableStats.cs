@@ -18,14 +18,8 @@ using UnityEngine;
         [Header("MOVEMENT")] [Tooltip("The top horizontal movement speed")]
         public float MaxSpeed = 14;
 
-        [Tooltip("The top horizontal movement speed while grappled")]
-        public float MaxSpeedGrappled = 14;
-
         [Tooltip("The player's capacity to gain horizontal speed")]
         public float Acceleration = 120;
-
-        [Tooltip("The player's capacity to gain horizontal speed while grappled")]
-        public float GrappleAcceleration = 120;
 
         [Tooltip("The pace at which the player comes to a stop")]
         public float GroundDeceleration = 60;
@@ -54,9 +48,19 @@ using UnityEngine;
         [Tooltip("The time before coyote jump becomes unusable. Coyote jump allows jump to execute even after leaving a ledge")]
         public float CoyoteTime = .15f;
 
+        [Tooltip("The amount of time we buffer a jump. This allows jump input before actually hitting the ground")]
+        public float JumpBuffer = .2f;
+
+        [Header("Grapple")] [Tooltip("The player's capacity to gain horizontal speed while grappled")]
+        public float GrappleAcceleration = 120;
+
+        [Tooltip("The top horizontal movement speed while grappled")]
+        public float MaxSpeedGrappled = 14;
+
         [Tooltip("The time after grappling when gravity does not apply")]
         public float GrappleGrace = .30f;
 
-        [Tooltip("The amount of time we buffer a jump. This allows jump input before actually hitting the ground")]
-        public float JumpBuffer = .2f;
+        [Header("Dash")] [Tooltip("Speed player moves while dashing")]
+        public float DashSpeed = 40f;
+        public float DashTime = .5f;
     }
