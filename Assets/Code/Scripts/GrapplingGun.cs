@@ -31,7 +31,6 @@ public class GrapplingGun : MonoBehaviour
     [Header("Distance:")]
     [SerializeField] private bool hasMaxDistance = false;
     [SerializeField] private float maxDistance = 20;
-    [SerializeField] private float minDistance = 5;
 
     [Header("No Launch To Point")]
     [SerializeField] private float targetFrequncy = 1;

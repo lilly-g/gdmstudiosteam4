@@ -24,8 +24,6 @@ public class MovingPlatformScript : MonoBehaviour
         }
 
         transform.position = Vector2.MoveTowards(transform.position,direction,speed * Time.deltaTime);
-
-        
     }
 
     //make it so player can stand on the platform

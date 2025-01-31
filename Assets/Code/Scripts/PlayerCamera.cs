@@ -6,11 +6,16 @@ public class PlayerCamera : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
+
     }
 
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
+        }
+
         transform.position = new Vector3 (player.transform.position.x, player.transform.position.y, transform.position.z);
     }
 }

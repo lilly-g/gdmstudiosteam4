@@ -215,7 +215,6 @@ using UnityEngine;
 
         #region Other
 
-        private bool isDashing = false;
         private float frameDashed = float.MinValue;
         private Vector2 dashDirection;
 
@@ -249,8 +248,6 @@ using UnityEngine;
 
         public void Dash()
         {
-            isDashing = true;
-
             dashDirection = _frameInput.Move;
             frameDashed = _time;
         }
