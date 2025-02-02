@@ -83,12 +83,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7416686705017423735, guid: 11023ba065a444f4397d72f539eb7bf4, type: 3}
+  m_Sprite: {fileID: -1974368801614722316, guid: 571ba7743e33c7540a13dc47a14bd899, type: 3}
   m_Color: {r: 0.1641509, g: 0.20380123, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.46, y: 3.76}
+  m_Size: {x: 4.03, y: 6.11}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -129,7 +129,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 4.49, y: 3.77}
+  m_Size: {x: 4.49, y: 3.72}
   m_Direction: 0
 --- !u!61 &2287930108507288294
 BoxCollider2D:
@@ -169,8 +169,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.46, y: 3.76}
-    newSize: {x: 4.46, y: 3.76}
+    oldSize: {x: 4, y: 4}
+    newSize: {x: 4.03, y: 6.11}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -296,7 +296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grappleRope: {fileID: 209323329658360889}
-  grappleToAll: 0
   grappleableLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -314,12 +313,10 @@ MonoBehaviour:
   rotationSpeed: 4
   hasMaxDistance: 0
   maxDistance: 20
-  minDistance: 8
-  launchToPoint: 1
-  autoConfigureDistance: 0
   targetFrequncy: 0
-  grapplePoint: {x: 0, y: 0}
+  _grapplePoint: {x: 0, y: 0}
   grappleDistanceVector: {x: 0, y: 0}
+  launchToPoint: 1
 --- !u!1 &4964120622826561681
 GameObject:
   m_ObjectHideFlags: 0

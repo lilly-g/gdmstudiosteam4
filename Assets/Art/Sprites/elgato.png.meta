@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,11 +104,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 446
-        height: 376
+        y: 312
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -117,6 +117,644 @@ TextureImporter:
       bones: []
       spriteID: 988f211bcb2a21990800000000000000
       internalID: -7416686705017423735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 312
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79a042167d7411a4483f3d34c23b7c68
+      internalID: 69652100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 312
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 847fb498ab0edbf4e9f1c1cf859f5c99
+      internalID: 1253639356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 312
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7419c5de5e39404448d789f59b8fea78
+      internalID: 1349425987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 312
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40a64ed1020765349b987d906526be24
+      internalID: 1430128975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 312
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af8848d47daec6f47889a348f03fb86d
+      internalID: 334611681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 248
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44270bfaf40c2f94fb70f3c301b07403
+      internalID: -1563340336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 248
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 389f6209404c13743b2b8dad0e6dc644
+      internalID: 206509188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 248
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c314d7b768712745a13c22a0fadc0b2
+      internalID: 598003324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_9
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 248
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aff456951c415d04b858ee14853bf775
+      internalID: -1816811148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 248
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 989692a3896e304499d405d694ad88a1
+      internalID: -1237151335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_11
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 248
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 590efebdbb886544286bce28a2091696
+      internalID: 927149450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 184
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7067df48b2e10e346accde8d672d5974
+      internalID: 112033000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 184
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3917853817a5e046920b38db841c434
+      internalID: -1811429054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 184
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23435641ac2ffca4382c1bfd72986d87
+      internalID: 299884352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 184
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e18e2b6b8e03e04e9130be258f64307
+      internalID: 358493216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 184
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a36cfb71d7827c45bfd9c8ca068fde7
+      internalID: 1589081540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_17
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 184
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06ce58e9aac29464db4b9472e94fbdc1
+      internalID: -1208978835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c77c7593febad145940022b580e25cb
+      internalID: 415543698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 120
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c0db3e4cde09f344a8a8e05c4e5efda
+      internalID: -1137038253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 120
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19cb1239095b2f94c89d8a381d96094a
+      internalID: 1140698608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 120
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e2f0e952e8ab5043b7bceaa1c1e0942
+      internalID: 1534095842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 120
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f108f2808a1deb4fbeee052486abc67
+      internalID: 20685063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 120
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e745a4da76e21e4b9a9e4fad0bbb859
+      internalID: 753357264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 56
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e57163e7bd9947e41849efaad6036610
+      internalID: 1521209205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 56
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d6f9fc5d3525c040b45c932259b6d23
+      internalID: 957880643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 56
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e0f479ca7fb93d41aecfa8e272a7918
+      internalID: 239303536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 56
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fe29e48c9e268542907a2a4c3e4aa6f
+      internalID: 181015402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_28
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 56
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a1c12ee711367438f0031fa8248d44
+      internalID: -1883148730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elgato_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 56
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80e4b74e322e3c45882ba2d2e06d8b5
+      internalID: -828800661
       vertices: []
       indices: 
       edges: []
@@ -136,6 +774,35 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       elgato_0: -7416686705017423735
+      elgato_1: 69652100
+      elgato_10: -1237151335
+      elgato_11: 927149450
+      elgato_12: 112033000
+      elgato_13: -1811429054
+      elgato_14: 299884352
+      elgato_15: 358493216
+      elgato_16: 1589081540
+      elgato_17: -1208978835
+      elgato_18: 415543698
+      elgato_19: -1137038253
+      elgato_2: 1253639356
+      elgato_20: 1140698608
+      elgato_21: 1534095842
+      elgato_22: 20685063
+      elgato_23: 753357264
+      elgato_24: 1521209205
+      elgato_25: 957880643
+      elgato_26: 239303536
+      elgato_27: 181015402
+      elgato_28: -1883148730
+      elgato_29: -828800661
+      elgato_3: 1349425987
+      elgato_4: 1430128975
+      elgato_5: 334611681
+      elgato_6: -1563340336
+      elgato_7: 206509188
+      elgato_8: 598003324
+      elgato_9: -1816811148
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

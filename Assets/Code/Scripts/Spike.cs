@@ -10,7 +10,8 @@ public class Spike : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // The player dies immediately. Reload the current scene.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Debug.Log("player is kill");
         }
     }
 }
