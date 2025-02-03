@@ -9,33 +9,37 @@ public class QuitGame : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (!quitConfirm && Input.GetKeyUp(KeyCode.Escape)) {
-            quitConfirm = true;
-        }
-
-        quitUI.SetActive(quitConfirm);
-
-        switch (quitConfirm)
-        {
-            case true:
-                if (gameObject.GetComponent<CanvasGroup>() != null) {
-                    gameObject.GetComponent<CanvasGroup>().alpha = transparencyAlpha;
-                }
-                break;
-            case false:
-                if (gameObject.GetComponent<CanvasGroup>() != null) {
-                    gameObject.GetComponent<CanvasGroup>().alpha = 1f;
-                }
-                break;
-        }
-
-        if (quitConfirm) {
-            if (Input.GetKeyUp(KeyCode.Y)) {
-                Quit();
+        if (!MainMenuButtons.newGamePressed) {
+            if (!quitConfirm && Input.GetKeyUp(KeyCode.Escape)) {
+                quitConfirm = true;
             }
 
-            if (Input.GetKeyUp(KeyCode.N)) {
-                quitConfirm = false;
+            quitUI.SetActive(quitConfirm);
+
+            switch (quitConfirm)
+            {
+                case true:
+                    if (gameObject.GetComponent<CanvasGroup>() != null) {
+                        gameObject.GetComponent<CanvasGroup>().alpha = transparencyAlpha;
+                        gameObject.GetComponent<CanvasGroup>().interactable = false;
+                    }
+                    break;
+                case false:
+                    if (gameObject.GetComponent<CanvasGroup>() != null) {
+                        gameObject.GetComponent<CanvasGroup>().alpha = 1f;
+                        gameObject.GetComponent<CanvasGroup>().interactable = true;
+                    }
+                    break;
+            }
+
+            if (quitConfirm) {
+                if (Input.GetKeyUp(KeyCode.Y)) {
+                    Quit();
+                }
+
+                if (Input.GetKeyUp(KeyCode.N)) {
+                    quitConfirm = false;
+                }
             }
         }
     }
