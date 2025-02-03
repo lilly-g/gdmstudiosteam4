@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: elgato_29
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -828800661, guid: 11023ba065a444f4397d72f539eb7bf4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9924528, g: 0, b: 0, a: 1}
   m_Transform:
     e00: 1
     e01: 0
