@@ -90,6 +90,7 @@ using UnityEngine;
         private float _frameLeftGrounded = float.MinValue;
         private float _frameLeftGrapple = float.MinValue;
         private bool _grounded;
+        public MovingPlatform _platform = null;
 
         private void CheckCollisions()
         {
@@ -177,10 +178,16 @@ using UnityEngine;
             //decelerate to 0 if not inputting
             else if (_frameInput.Move.x == 0)
             {
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
+                if (_platform != null)
+                {
+                    _frameVelocity.x = _platform.getDirection();
+                }
+                else{
+                    _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
+                }
             }
             //if player is travelling faster than max speed, horizontal input should only affect their movement if it is
-            //resisting current movement. Prevents player from slowing down when holding "forward".
+            //resisting current movement. Prevents player from abruptly slowing down when holding "forward".
             else if (Mathf.Abs(_frameVelocity.x) > _stats.MaxSpeed)
             {
                 if ((_frameVelocity.x > 0 && _frameInput.Move.x > 0) || (_frameVelocity.x < 0 && _frameInput.Move.x < 0))

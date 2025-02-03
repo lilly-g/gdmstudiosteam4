@@ -1,36 +1,38 @@
 using UnityEngine;
 
-public class MovingPlatformScript : MonoBehaviour
+public class MovingPlatform : MonoBehaviour
 {
-    public Transform Left, Right;
-    public int speed;
-    Vector2 direction;
+    [SerializeField] private Transform Left, Right;
+    [SerializeField] private float speed;
+    private float direction;
+    private Rigidbody2D _rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        direction = Right.position; //it starts by moving right
+        direction = speed; //it starts by moving right
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Vector2.Distance(transform.position, Left.position) < .1f) { 
-            direction = Right.position;
+            direction = speed;
         }
         
         if (Vector2.Distance(transform.position, Right.position) < .1f) { 
-            direction = Left.position;
+            direction = -speed;
         }
 
-        transform.position = Vector2.MoveTowards(transform.position,direction,speed * Time.deltaTime);
+        _rb.linearVelocity = new Vector2 (direction, _rb.linearVelocity.y);
     }
 
     //make it so player can stand on the platform
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
             Debug.Log("enter platform");
-            collision.transform.SetParent(this.transform);
+            collision.gameObject.GetComponent<PlayerController>()._platform = this;
         }
     }
 
@@ -38,8 +40,13 @@ public class MovingPlatformScript : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
             Debug.Log("exit platform");
-            collision.transform.SetParent(null);
+            collision.gameObject.GetComponent<PlayerController>()._platform = null;
         }
+    }
+
+    public float getDirection()
+    {
+        return direction;
     }
 
 }
