@@ -43,6 +43,12 @@ using UnityEngine;
         private void Update()
         {
             _time += Time.deltaTime;
+
+            if (_time < frameDashed + _stats.DashTime)
+            {
+                isDashing = false;
+            }
+
             GatherInput();
         }
 
@@ -158,6 +164,8 @@ using UnityEngine;
         //Controls horizontal movement
         private void HandleDirection()
         {
+            var deceleration = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
+
             if (_grapple.grappleRope.isGrappling)
             {
                 //if swinging on grapple, use grapple values for acceleration. Otherwise, prohibit horizontal movement.
@@ -166,12 +174,24 @@ using UnityEngine;
                     _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeedGrappled, _stats.GrappleAcceleration * Time.fixedDeltaTime);
                 }
             }
-            //decelerate to 0 if not inputting, otherwise accelerate to max speed
-            else if (_frameInput.Move.x == 0 || Mathf.Abs(_frameVelocity.x) > _stats.MaxSpeed)
+            //decelerate to 0 if not inputting
+            else if (_frameInput.Move.x == 0)
             {
-                var deceleration = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
             }
+            //if player is travelling faster than max speed, horizontal input should only affect their movement if it is
+            //resisting current movement. Prevents player from slowing down when holding "forward".
+            else if (Mathf.Abs(_frameVelocity.x) > _stats.MaxSpeed)
+            {
+                if ((_frameVelocity.x > 0 && _frameInput.Move.x > 0) || (_frameVelocity.x < 0 && _frameInput.Move.x < 0))
+                {
+                    _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
+                }
+                else{
+                    _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
+                }
+            }
+            //accelerate to max speed
             else
             {
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
@@ -184,21 +204,22 @@ using UnityEngine;
 
         private void HandleGravity()
         {
-            //if on ground, apply grounding force
+            //if dashing, apply dash force
             if (_time < frameDashed + _stats.DashTime)
             {
                 _frameVelocity = dashDirection * _stats.DashSpeed;
-            }
-            else if (_grounded && _frameVelocity.y <= 0f)
-            {
-                _frameVelocity.y = _stats.GroundingForce;
             }
             //if launching to grapple, apply launch force
             else if (_grapple.grappleRope.isGrappling && _grapple.launchToPoint)
             {
                 _frameVelocity = Vector2.MoveTowards(_frameVelocity, _grapple.grappleDistanceVector.normalized * _stats.MaxSpeedGrappled, _stats.GrappleAcceleration * Time.fixedDeltaTime);
             }
-            //apply gravity
+            //if on ground, apply grounding force
+            else if (_grounded && _frameVelocity.y <= 0f)
+            {
+                _frameVelocity.y = _stats.GroundingForce;
+            }
+            //otherwise apply gravity
             else
             {
                 //gravity does not apply during grapplegrace
@@ -217,6 +238,7 @@ using UnityEngine;
 
         private float frameDashed = float.MinValue;
         private Vector2 dashDirection;
+        public bool isDashing;
 
         //called once when grapple begins
         public void Grappled()
@@ -239,6 +261,12 @@ using UnityEngine;
             else{
                 //this gets rid of any gravitational force built up while grappled
                 _frameVelocity.y = 0;
+
+                //prevents player from launching too quickly off of swing
+                if (Mathf.Abs(_frameVelocity.x) > _stats.MaxSpeed)
+                {
+                    _frameVelocity.x  *= .75f;
+                }
             }
 
             //enables mid-air jump after releasing grapple
@@ -249,6 +277,7 @@ using UnityEngine;
         public void Dash()
         {
             dashDirection = _frameInput.Move;
+            isDashing = true;
             frameDashed = _time;
         }
 

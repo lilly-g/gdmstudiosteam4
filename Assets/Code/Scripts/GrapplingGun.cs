@@ -37,6 +37,7 @@ public class GrapplingGun : MonoBehaviour
 
     [HideInInspector] public Vector2 _grapplePoint;
     [HideInInspector] public Vector2 grappleDistanceVector;
+    [HideInInspector] public GameObject grappledObj;
     [HideInInspector] public bool launchToPoint = true;
 
     private void Start()
@@ -52,7 +53,7 @@ public class GrapplingGun : MonoBehaviour
         //grapple is set on button press
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            SetGrapplePoint();
+            SetGrapple();
         }
 
         //grapple is released on button press or when reaching grapple point
@@ -64,6 +65,7 @@ public class GrapplingGun : MonoBehaviour
         if (grappleRope.isGrappling)
         {
             Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
+            SetGrapplePoint();
             RotateGun(mousePos, true);
         }
 
@@ -96,7 +98,7 @@ public class GrapplingGun : MonoBehaviour
         }
     }
 
-    public void SetGrapplePoint()
+    public void SetGrapple()
     {
         //uses a raycast from player to mouse position to find grapplepoint
         Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
@@ -118,11 +120,17 @@ public class GrapplingGun : MonoBehaviour
 
             if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistance || !hasMaxDistance)
             {
-                _grapplePoint = _hit.collider.bounds.center;
-                grappleDistanceVector = _grapplePoint - (Vector2)gunPivot.position;
+                grappledObj = _hit.collider.gameObject;
+                SetGrapplePoint();
                 grappleRope.enabled = true;
             }
         }
+    }
+
+    public void SetGrapplePoint()
+    {
+        _grapplePoint = grappledObj.GetComponent<Collider2D>().bounds.center;
+        grappleDistanceVector = _grapplePoint - (Vector2)gunPivot.position;
     }
 
     public void Grapple()

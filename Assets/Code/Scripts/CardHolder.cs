@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class CardHolder : MonoBehaviour
 {
     private Stack<Card> cardStack = new Stack<Card>();
+    private PlayerController playerController;
+    private GrapplingRope grapple;
 
     public void addCard(Card pCard)
     {
@@ -14,9 +16,10 @@ public class CardHolder : MonoBehaviour
     {
         if (cardStack.Count > 0)
         {
-            Card uCard = cardStack.Pop();
-            if (uCard != null)
+            Card uCard = cardStack.Peek();
+            if (uCard != null && uCard.CanPlay(this.gameObject))
             {
+                cardStack.Pop();
                 uCard.Play(this.gameObject);
             }
         }

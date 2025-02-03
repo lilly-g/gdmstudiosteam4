@@ -22,8 +22,19 @@ public class CardManager
 
 public abstract class Card
 {
-   abstract public Color getColor();
-   abstract public void Play(GameObject pObj);
+    abstract public Color getColor();
+    abstract public void Play(GameObject pObj);
+
+    virtual public bool CanPlay(GameObject pObj)
+    {
+        if (pObj.GetComponentInChildren<GrapplingRope>().isGrappling || pObj.GetComponent<PlayerController>().isDashing)
+        {
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }
 
 public class GrappleCard : Card
@@ -36,7 +47,7 @@ public class GrappleCard : Card
     override public void Play(GameObject pObj)
     {
         Debug.Log("Grapple Card Played!");
-        pObj.GetComponentInChildren<GrapplingGun>().SetGrapplePoint();
+        pObj.GetComponentInChildren<GrapplingGun>().SetGrapple();
     }
 }
 
@@ -51,5 +62,16 @@ public class DashCard : Card
     {
         Debug.Log("Dash Card Played!");
         pObj.GetComponent<PlayerController>().Dash();
+    }
+
+    override public bool CanPlay(GameObject pObj)
+    {
+        if (!base.CanPlay(pObj) || new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) == Vector2.zero)
+        {
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }
