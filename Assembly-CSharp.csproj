@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Assets\Code\Scripts\LevelGoal.cs" />
     <Compile Include="Assets\Code\Scripts\Card.cs" />
+    <Compile Include="Assets\Code\Scripts\MainMenu\MainMenuButtons.cs" />
     <Compile Include="Assets\Code\Scripts\Controllers\InputController.cs" />
     <Compile Include="Assets\Code\Scripts\CardHolder.cs" />
     <Compile Include="Assets\Code\Scripts\Controllers\PlayerController.cs" />
@@ -77,10 +78,12 @@
     <Compile Include="Assets\Code\Scripts\RopeController.cs" />
     <Compile Include="Assets\Code\Scripts\SpawnPoint.cs" />
     <Compile Include="Assets\Code\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Code\Scripts\MainMenu\InitToMain.cs" />
     <Compile Include="Assets\Code\Scripts\Checks\Ground.cs" />
     <Compile Include="Assets\Code\Scripts\Controllers\Controller.cs" />
     <Compile Include="Assets\Code\Scripts\PlayerCamera.cs" />
     <Compile Include="Assets\Code\Scripts\GrappleThrown.cs" />
+    <Compile Include="Assets\Code\Scripts\MainMenu\QuitGame.cs" />
     <Compile Include="Assets\Code\Scripts\GrappleMovement.cs" />
   </ItemGroup>
   <ItemGroup>
