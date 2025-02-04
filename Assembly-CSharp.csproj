@@ -79,6 +79,7 @@
     <Compile Include="Assets/Code/Scripts/ScriptableStats.cs" />
     <Compile Include="Assets/Code/Scripts/GrapplingGun.cs" />
     <Compile Include="Assets/Code/Scripts/SpawnPoint.cs" />
+    <Compile Include="Assets/Code/Scripts/FallOffAndDie.cs" />
     <Compile Include="Assets/Code/Scripts/MainMenu/InitToMain.cs" />
     <Compile Include="Assets/Code/Scripts/Checks/Ground.cs" />
     <Compile Include="Assets/Code/Scripts/Controllers/Controller.cs" />
