@@ -67,10 +67,12 @@
   <ItemGroup>
     <Compile Include="Assets/Code/Scripts/LevelGoal.cs" />
     <Compile Include="Assets/Code/Scripts/Card.cs" />
+    <Compile Include="Assets/Code/Scripts/Projectile.cs" />
     <Compile Include="Assets/Code/Scripts/MainMenu/MainMenuButtons.cs" />
     <Compile Include="Assets/Code/Scripts/Controllers/InputController.cs" />
     <Compile Include="Assets/Code/Scripts/CardHolder.cs" />
     <Compile Include="Assets/Code/Scripts/Spike.cs" />
+    <Compile Include="Assets/Code/Scripts/CrumbleTile.cs" />
     <Compile Include="Assets/Code/Scripts/Controllers/PlayerController.cs" />
     <Compile Include="Assets/Code/Scripts/Capabilities/Jump.cs" />
     <Compile Include="Assets/Code/Scripts/Capabilities/Move.cs" />
@@ -81,9 +83,9 @@
     <Compile Include="Assets/Code/Scripts/SpawnPoint.cs" />
     <Compile Include="Assets/Code/Scripts/FallOffAndDie.cs" />
     <Compile Include="Assets/Code/Scripts/MainMenu/InitToMain.cs" />
+    <Compile Include="Assets/Code/Scripts/ProjectileSpawner.cs" />
     <Compile Include="Assets/Code/Scripts/Checks/Ground.cs" />
     <Compile Include="Assets/Code/Scripts/Controllers/Controller.cs" />
-    <Compile Include="Assets/CrumbleTile.cs" />
     <Compile Include="Assets/Code/Scripts/GrapplingRope.cs" />
     <Compile Include="Assets/Code/Scripts/PlayerCamera.cs" />
     <Compile Include="Assets/Code/Scripts/PlayerController.cs" />
