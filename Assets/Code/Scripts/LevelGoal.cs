@@ -1,7 +1,9 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Goal : MonoBehaviour
 {
+    public string nextSceneName;
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -12,7 +14,18 @@ public class Goal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Level Complete");
+            LoadNextScene();
+        }
+    }
+    private void LoadNextScene()
+    {
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("Next scene name is not set in the Inspector!");
         }
     }
 }
