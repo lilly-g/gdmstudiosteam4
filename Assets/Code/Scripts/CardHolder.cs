@@ -12,6 +12,11 @@ public class CardHolder : MonoBehaviour
         cardStack.Push(pCard);
     }
 
+    // get cardStack method for UI
+    public List<Card> getStackList() {
+        return new List<Card>(cardStack);
+    }
+
     public void playCard()
     {
         if (cardStack.Count > 0)
