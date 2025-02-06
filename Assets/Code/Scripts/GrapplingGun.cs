@@ -127,6 +127,22 @@ public class GrapplingGun : MonoBehaviour
         }
     }
 
+    public bool CanGrapple()
+    {
+        Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
+
+        RaycastHit2D _hit;
+        _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized, Mathf.Infinity, ~playerLayer);
+
+        if (_hit && (1 << _hit.collider.gameObject.layer) == grappleableLayer)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public void SetGrapplePoint()
     {
         _grapplePoint = grappledObj.GetComponent<Collider2D>().bounds.center;

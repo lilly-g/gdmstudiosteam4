@@ -90,7 +90,7 @@ using UnityEngine;
         private float _frameLeftGrounded = float.MinValue;
         private float _frameLeftGrapple = float.MinValue;
         private bool _grounded;
-        public MovingPlatform _platform = null;
+        [HideInInspector] public MovingPlatform _platform = null;
 
         private void CheckCollisions()
         {
@@ -245,7 +245,7 @@ using UnityEngine;
 
         private float frameDashed = float.MinValue;
         private Vector2 dashDirection;
-        public bool isDashing;
+        [HideInInspector] public bool isDashing;
 
         //called once when grapple begins
         public void Grappled()
