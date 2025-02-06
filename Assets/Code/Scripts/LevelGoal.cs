@@ -1,3 +1,4 @@
+/*
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Goal : MonoBehaviour
@@ -22,6 +23,46 @@ public class Goal : MonoBehaviour
         if (!string.IsNullOrEmpty(nextSceneName))
         {
             SceneManager.LoadScene(nextSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("Next scene name is not set in the Inspector!");
+        }
+    }
+}
+*/
+
+using UnityEngine;
+using UnityEngine.SceneManagement; // Required for scene loading
+using System.Collections;
+
+public class GoalTrigger : MonoBehaviour
+{
+    public string nextSceneName; // Set this in the Inspector
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player")) // Ensure the player has the correct tag
+        {
+            StartCoroutine(LoadSceneAsync());
+        }
+    }
+
+    private IEnumerator LoadSceneAsync()
+    {
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneName);
+            asyncLoad.allowSceneActivation = false;
+            
+            while (!asyncLoad.isDone)
+            {
+                if (asyncLoad.progress >= 0.9f)
+                {
+                    asyncLoad.allowSceneActivation = true;
+                }
+                yield return null;
+            }
         }
         else
         {
