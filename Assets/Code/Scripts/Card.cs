@@ -49,11 +49,6 @@ public class GrappleCard : Card
         Debug.Log("Grapple Card Played!");
         pObj.GetComponentInChildren<GrapplingGun>().SetGrapple();
     }
-
-    override public bool CanPlay(GameObject pObj)
-    {
-        return (base.CanPlay(pObj) && pObj.GetComponentInChildren<GrapplingGun>().CanGrapple());
-    }
 }
 
 public class DashCard : Card
@@ -71,6 +66,12 @@ public class DashCard : Card
 
     override public bool CanPlay(GameObject pObj)
     {
-        return (base.CanPlay(pObj) && new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) != Vector2.zero);
+        if (!base.CanPlay(pObj) || new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) == Vector2.zero)
+        {
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }

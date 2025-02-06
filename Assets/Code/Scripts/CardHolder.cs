@@ -32,7 +32,7 @@ public class CardHolder : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             playCard();
         }
