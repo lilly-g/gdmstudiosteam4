@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -15.164171, y: -0.754034, z: -0.0079852985}
-  m_LocalScale: {x: 0.3, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.3405, y: 0.3625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8312288778583994493}
@@ -83,8 +83,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1974368801614722316, guid: 571ba7743e33c7540a13dc47a14bd899, type: 3}
-  m_Color: {r: 0.1641509, g: 0.20380123, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b8e8ba90b8bfb455a9244c0b3ed815d3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -128,8 +128,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 4.49, y: 3.72}
+  m_Offset: {x: 0.0000028008058, y: 0.2798169}
+  m_Size: {x: 4.043159, y: 4.7771363}
   m_Direction: 0
 --- !u!61 &2287930108507288294
 BoxCollider2D:
@@ -165,17 +165,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -1.68}
+  m_Offset: {x: -0.26065922, y: -2.0804465}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 6.2625, y: 6.225}
     newSize: {x: 4.03, y: 6.11}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.4, y: 0.39}
+  m_Size: {x: 3.8786812, y: 1.1908927}
   m_EdgeRadius: 0
 --- !u!50 &7046542416456342472
 Rigidbody2D:
@@ -250,6 +250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: 39deb6bac84fb7c48888f28901d5767b, type: 2}
+  _platform: {fileID: 0}
+  isDashing: 0
 --- !u!1 &4781492280450090407
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +318,7 @@ MonoBehaviour:
   targetFrequncy: 0
   _grapplePoint: {x: 0, y: 0}
   grappleDistanceVector: {x: 0, y: 0}
+  grappledObj: {fileID: 0}
   launchToPoint: 1
 --- !u!1 &4964120622826561681
 GameObject:

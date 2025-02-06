@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d22784d9a1b56634cb5eef05695e9106
+guid: b8e8ba90b8bfb455a9244c0b3ed815d3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8779845734497283263
-    second: Placeholder grappling hook_0
+      213: 3804419739914296938
+    second: mc_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 80
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Placeholder grappling hook_0
+      name: mc_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 539
-        height: 720
+        width: 420
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fbc607b8d2748d970800000000000000
-      internalID: 8779845734497283263
+      spriteID: a6e5316c8930cc430800000000000000
+      internalID: 3804419739914296938
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Placeholder grappling hook_0: 8779845734497283263
+      mc_0: 3804419739914296938
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
