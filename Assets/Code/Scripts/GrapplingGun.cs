@@ -50,14 +50,19 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
+
+        #if UNITY_EDITOR
+
         //grapple is set on button press
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             SetGrapple();
         }
 
+        #endif
+
         //grapple is released on button press or when reaching grapple point
-        if (grappleRope.isGrappling && (Input.GetKeyDown(KeyCode.Mouse1) || Vector2.Distance(gunHolder.position, _grapplePoint) < 1))
+        if (grappleRope.isGrappling && (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Space) || Vector2.Distance(gunHolder.position, _grapplePoint) < 1))
         {
             releaseGrapple();
         }
@@ -131,6 +136,16 @@ public class GrapplingGun : MonoBehaviour
     {
         _grapplePoint = grappledObj.GetComponent<Collider2D>().bounds.center;
         grappleDistanceVector = _grapplePoint - (Vector2)gunPivot.position;
+    }
+
+    public bool CanGrapple()
+    {
+        Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
+
+        RaycastHit2D _hit;
+        _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized, Mathf.Infinity, ~playerLayer);
+
+        return (_hit && (1 << _hit.collider.gameObject.layer) == grappleableLayer);
     }
 
     public void Grapple()

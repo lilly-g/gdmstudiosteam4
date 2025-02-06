@@ -13,7 +13,8 @@ public class CardCollectable : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        //player has multiple colliders, checks if collider is capsule to ensure collectable only interacts with one player collider
+        if (other.gameObject.CompareTag("Player") && other.GetType().ToString().Equals("UnityEngine.CapsuleCollider2D"))
         {
             CardHolder holder = other.gameObject.GetComponent<CardHolder>();
             holder.addCard(CardManager.enumToCard(card));

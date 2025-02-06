@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5090570407069283488}
   - component: {fileID: 4775046893946865730}
   - component: {fileID: 2879722335874575263}
+  - component: {fileID: 8562746273744572209}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 1078635762693062398}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.164171, y: -0.754034, z: -0.0079852985}
+  m_LocalPosition: {x: -15.164171, y: -0.896, z: -0.0079852985}
   m_LocalScale: {x: 0.3405, y: 0.3625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -128,8 +129,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0000028008058, y: 0.2798169}
-  m_Size: {x: 4.043159, y: 4.7771363}
+  m_Offset: {x: 0, y: 0.03}
+  m_Size: {x: 3.64, y: 5.5}
   m_Direction: 0
 --- !u!61 &2287930108507288294
 BoxCollider2D:
@@ -165,7 +166,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.26065922, y: -1.6530995}
+  m_Offset: {x: -0.09, y: -2.69}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -175,7 +176,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.8786812, y: 0.33619916}
+  m_Size: {x: 3.03, y: 0.34}
   m_EdgeRadius: 0
 --- !u!50 &7046542416456342472
 Rigidbody2D:
@@ -222,7 +223,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 15.182907
+  m_Distance: 15.1906185
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!114 &4775046893946865730
@@ -250,8 +251,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: 39deb6bac84fb7c48888f28901d5767b, type: 2}
+  boxSize: {x: 1.3, y: 0.03}
+  boxCastDistance: 1.05
   _platform: {fileID: 0}
   isDashing: 0
+--- !u!114 &8562746273744572209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078635762693062398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b1b09113dfcc146b35ef468a4347fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartThreshold: 0.5
 --- !u!1 &4781492280450090407
 GameObject:
   m_ObjectHideFlags: 0

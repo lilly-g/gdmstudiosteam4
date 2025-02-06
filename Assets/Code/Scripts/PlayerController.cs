@@ -12,8 +12,8 @@ using UnityEngine;
         private Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
 
-        private Vector2 boxSize = new Vector2(1.35f, 0.03f);
-        private float boxCastDistance = .94f;
+        [SerializeField] private Vector2 boxSize = new Vector2(1.35f, 0.03f);
+        [SerializeField] private float boxCastDistance = .94f;
 
         #region Interface
 
@@ -44,7 +44,7 @@ using UnityEngine;
         {
             _time += Time.deltaTime;
 
-            if (_time < frameDashed + _stats.DashTime)
+            if (_time >= frameDashed + _stats.DashTime)
             {
                 isDashing = false;
             }
@@ -90,7 +90,7 @@ using UnityEngine;
         private float _frameLeftGrounded = float.MinValue;
         private float _frameLeftGrapple = float.MinValue;
         private bool _grounded;
-        public MovingPlatform _platform = null;
+        [HideInInspector] public MovingPlatform _platform = null;
 
         private void CheckCollisions()
         {
@@ -245,7 +245,7 @@ using UnityEngine;
 
         private float frameDashed = float.MinValue;
         private Vector2 dashDirection;
-        public bool isDashing;
+        [HideInInspector] public bool isDashing;
 
         //called once when grapple begins
         public void Grappled()

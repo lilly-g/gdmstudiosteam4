@@ -18,12 +18,19 @@ public class DisplayCard : MonoBehaviour
     [SerializeField] private Image nextCard;
 
     void Start()
-    {   
+    {
+        playerWithCardHolder = GameObject.FindWithTag("Player");
         cardHolder = playerWithCardHolder.GetComponent<CardHolder>();
     }
 
     void Update() 
     {
+        if (playerWithCardHolder == null)
+        {
+            playerWithCardHolder = GameObject.FindWithTag("Player");
+            cardHolder = playerWithCardHolder.GetComponent<CardHolder>();
+        }
+
         List<Card> cardList = cardHolder.getStackList();
 
         switch (cardList.Count) 

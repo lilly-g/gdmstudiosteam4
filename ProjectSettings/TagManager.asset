@@ -8,6 +8,7 @@ TagManager:
   - Spike
   - Slingshot
   - Swingshot
+  - Collectable
   layers:
   - Default
   - TransparentFX
