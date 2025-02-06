@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 5090570407069283488}
   - component: {fileID: 4775046893946865730}
   - component: {fileID: 2879722335874575263}
-  - component: {fileID: 4813063172031963750}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -223,7 +222,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 19.631855
+  m_Distance: 15.182907
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!114 &4775046893946865730
@@ -253,22 +252,6 @@ MonoBehaviour:
   _stats: {fileID: 11400000, guid: 39deb6bac84fb7c48888f28901d5767b, type: 2}
   _platform: {fileID: 0}
   isDashing: 0
-<<<<<<< Updated upstream
-=======
---- !u!114 &4813063172031963750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078635762693062398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e85329da5c848ad40be33f21d565afe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  restartThreshold: 0.5
->>>>>>> Stashed changes
 --- !u!1 &4781492280450090407
 GameObject:
   m_ObjectHideFlags: 0
