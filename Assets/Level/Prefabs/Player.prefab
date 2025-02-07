@@ -223,7 +223,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 15.1906185
+  m_Distance: 19.528734
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!114 &4775046893946865730
@@ -329,7 +329,7 @@ MonoBehaviour:
   playerController: {fileID: 2879722335874575263}
   rotateOverTime: 1
   rotationSpeed: 4
-  hasMaxDistance: 0
+  hasMaxDistance: 1
   maxDistance: 20
   targetFrequncy: 0
   _grapplePoint: {x: 0, y: 0}

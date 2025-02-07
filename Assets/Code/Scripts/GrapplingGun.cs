@@ -56,7 +56,7 @@ public class GrapplingGun : MonoBehaviour
         //grapple is set on button press
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            SetGrapple();
+           TryGrapple();
         }
 
         #endif
@@ -103,8 +103,53 @@ public class GrapplingGun : MonoBehaviour
         }
     }
 
-    public void SetGrapple()
+    public bool SetGrapple()
     {
+        Collider2D[] taggedPoints = Physics2D.OverlapCircleAll(firePoint.position, maxDistance, LayerMask.GetMask("GrapplePoint"));
+
+        if (taggedPoints.Length > 0)
+        {
+            Collider2D grapplePoint = null;
+            float minDistance = 999999999999999999;
+
+            foreach (var point in taggedPoints)
+            {
+                Vector2 distanceVector = point.transform.position - firePoint.position;
+                float distanceFloat = Vector2.Distance(point.transform.position, firePoint.position);
+                RaycastHit2D _hit;
+
+                _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized, Mathf.Infinity, ~playerLayer);
+
+                if ((distanceFloat <= minDistance) && (_hit && (1 << _hit.collider.gameObject.layer) == grappleableLayer))
+                {
+                    minDistance = distanceFloat;
+                    grapplePoint = point;
+                }
+            }
+
+            if (grapplePoint != null)
+            {
+                if (grapplePoint.gameObject.CompareTag("Slingshot"))
+                {
+                    launchToPoint = true;
+                }
+                else{
+                    launchToPoint = false;
+                }
+
+                grappledObj = grapplePoint.gameObject;
+                SetGrapplePoint();
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+
+        /*
         //uses a raycast from player to mouse position to find grapplepoint
         Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
 
@@ -130,6 +175,7 @@ public class GrapplingGun : MonoBehaviour
                 grappleRope.enabled = true;
             }
         }
+        */
     }
 
     public void SetGrapplePoint()
@@ -138,6 +184,15 @@ public class GrapplingGun : MonoBehaviour
         grappleDistanceVector = _grapplePoint - (Vector2)gunPivot.position;
     }
 
+    public void TryGrapple()
+    {
+        if (SetGrapple())
+        {
+            grappleRope.enabled = true;
+        }
+    }
+
+    /*
     public bool CanGrapple()
     {
         Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
@@ -147,6 +202,7 @@ public class GrapplingGun : MonoBehaviour
 
         return (_hit && (1 << _hit.collider.gameObject.layer) == grappleableLayer);
     }
+    */
 
     public void Grapple()
     {

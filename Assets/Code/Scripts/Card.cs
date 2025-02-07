@@ -59,12 +59,12 @@ public class GrappleCard : Card
     {
         Debug.Log("Grapple Card Played!");
         base.Play(pObj);
-        pObj.GetComponentInChildren<GrapplingGun>().SetGrapple();
+        pObj.GetComponentInChildren<GrapplingGun>().grappleRope.enabled = true;
     }
 
     override public bool CanPlay(GameObject pObj)
     {
-        return (base.CanPlay(pObj) && pObj.GetComponentInChildren<GrapplingGun>().CanGrapple());
+        return (base.CanPlay(pObj) && pObj.GetComponentInChildren<GrapplingGun>().SetGrapple());
     }
 }
 
