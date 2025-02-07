@@ -60,8 +60,14 @@ using UnityEngine;
         [Tooltip("The top horizontal movement speed while grappled")]
         public float MaxSpeedGrappled = 14;
 
-        [Tooltip("The time after grappling when gravity does not apply")]
+        [Tooltip("The time after grappling when a mid-air jump is possible")]
         public float GrappleGrace = .30f;
+
+        [Tooltip("The time after grappling when a large mid-air jump is possible")]
+        public float BoostJumpWindow = .15f;
+
+        [Tooltip("Immediate velocity applied on boosted jump")]
+        public float BoostJumpPower = 50;
 
         [Header("Dash")] [Tooltip("Speed player moves while dashing")]
         public float DashSpeed = 40f;

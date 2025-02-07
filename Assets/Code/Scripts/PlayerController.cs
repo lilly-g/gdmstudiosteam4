@@ -136,6 +136,7 @@ using UnityEngine;
 
         private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _stats.JumpBuffer;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
+        private bool HasGrappleGrace => !_grounded && _time < _frameLeftGrapple + _stats.GrappleGrace;
         
         private void HandleJump()
         {
@@ -143,7 +144,7 @@ using UnityEngine;
 
             if (!_jumpToConsume && !HasBufferedJump) return;
 
-            if (_grounded || CanUseCoyote) ExecuteJump();
+            if (_grounded || CanUseCoyote || HasGrappleGrace) ExecuteJump();
 
             _jumpToConsume = false;
         }
@@ -154,7 +155,7 @@ using UnityEngine;
             _timeJumpWasPressed = 0;
             _bufferedJumpUsable = false;
             _coyoteUsable = false;
-            _frameVelocity.y = _stats.JumpPower;
+            _frameVelocity.y = (_time < _frameLeftGrapple + _stats.BoostJumpWindow) ? _stats.BoostJumpPower : _stats.JumpPower;
             Jumped?.Invoke();
         }
 
@@ -230,13 +231,9 @@ using UnityEngine;
             //otherwise apply gravity
             else
             {
-                //gravity does not apply during grapplegrace
-                if (_time > _frameLeftGrapple + _stats.GrappleGrace)
-                {
-                    var inAirGravity = _stats.FallAcceleration;
-                    if (_endedJumpEarly && _frameVelocity.y > 0) inAirGravity *= _stats.JumpEndEarlyGravityModifier;
-                    _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
-                }
+                var inAirGravity = _stats.FallAcceleration;
+                if (_endedJumpEarly && _frameVelocity.y > 0) inAirGravity *= _stats.JumpEndEarlyGravityModifier;
+                _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
             }
         }
 
@@ -254,7 +251,7 @@ using UnityEngine;
             //when launching, provide inital boost towards point
             if (_grapple.launchToPoint)
             {
-                _frameVelocity = _grapple.grappleDistanceVector.normalized * 2;
+                //_frameVelocity = _grapple.grappleDistanceVector.normalized * 2;
             }
         }
 
