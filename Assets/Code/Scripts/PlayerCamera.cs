@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D player;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float verticalOffset = 5f;
+    [SerializeField] private float horizontalOffset = 2f;
+    private Rigidbody2D player;
+    private float currentHorizontalOffset;
 
     void Start()
     {
@@ -16,6 +20,15 @@ public class PlayerCamera : MonoBehaviour
             player = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
         }
 
-        transform.position = new Vector3 (player.transform.position.x, player.transform.position.y, transform.position.z);
+        if (player.linearVelocity.x != 0)
+        {
+            currentHorizontalOffset = Mathf.Lerp(currentHorizontalOffset, ((player.linearVelocity.x > 0) ? horizontalOffset : -horizontalOffset), moveSpeed * Time.deltaTime);
+        }
+        else{
+            currentHorizontalOffset = Mathf.Lerp(currentHorizontalOffset, 0f, moveSpeed * Time.deltaTime);
+        }
+
+        Vector3 targetPosition = new Vector3 (player.transform.position.x + currentHorizontalOffset, player.transform.position.y + verticalOffset, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
     }
 }
