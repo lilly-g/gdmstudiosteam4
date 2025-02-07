@@ -24,6 +24,7 @@ MonoBehaviour:
   GroundDeceleration: 200
   AirDeceleration: 120
   GroundingForce: -1.5
+  WallSlideForce: -5
   GrounderDistance: 0.03
   JumpPower: 42
   MaxFallSpeed: 40
@@ -34,5 +35,7 @@ MonoBehaviour:
   GrappleAcceleration: 200
   MaxSpeedGrappled: 50
   GrappleGrace: 0.3
+  BoostJumpWindow: 0.15
+  BoostJumpPower: 50
   DashSpeed: 40
   DashTime: 0.2

@@ -33,6 +33,9 @@ using UnityEngine;
         [Tooltip("A constant downward force applied while grounded. Helps on slopes"), Range(0f, -10f)]
         public float GroundingForce = -1.5f;
 
+        [Tooltip("The speed at which the player slides down a wall")]
+        public float WallSlideForce = -2f;
+
         [Tooltip("The detection distance for grounding and roof detection"), Range(0f, 0.5f)]
         public float GrounderDistance = 0.05f;
 

@@ -20,7 +20,7 @@ public class PlayerCamera : MonoBehaviour
             player = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
         }
 
-        if (player.linearVelocity.x != 0)
+        if (player.linearVelocity.x < -1 || player.linearVelocity.x > 1)
         {
             currentHorizontalOffset = Mathf.Lerp(currentHorizontalOffset, ((player.linearVelocity.x > 0) ? horizontalOffset : -horizontalOffset), moveSpeed * Time.deltaTime);
         }

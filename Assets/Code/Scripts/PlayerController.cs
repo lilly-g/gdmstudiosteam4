@@ -14,6 +14,9 @@ using UnityEngine;
 
         [SerializeField] private Vector2 boxSize = new Vector2(1.35f, 0.03f);
         [SerializeField] private float boxCastDistance = .94f;
+        [SerializeField] private Vector2 wallCheckSize = new Vector2(0.03f, 1.5f);
+        [SerializeField] private float wallCheckDistance = .5f;
+
 
         #region Interface
 
@@ -29,6 +32,8 @@ using UnityEngine;
         {
             Gizmos.DrawWireCube(transform.position - transform.up * boxCastDistance, boxSize);
             Gizmos.DrawWireCube(transform.position + transform.up * boxCastDistance, boxSize);
+            Gizmos.DrawWireCube(transform.position + transform.right * wallCheckDistance, wallCheckSize);
+            Gizmos.DrawWireCube(transform.position - transform.right * wallCheckDistance, wallCheckSize);
         }
 
         private void Awake()
@@ -92,19 +97,24 @@ using UnityEngine;
         private bool _grounded;
         [HideInInspector] public MovingPlatform _platform = null;
 
+        //fix this
+        bool wallHit = false;
+
         private void CheckCollisions()
         {
             Physics2D.queriesStartInColliders = false;
 
             // Ground and Ceiling
             bool groundHit = Physics2D.BoxCast(transform.position, new Vector2(boxSize.x, _stats.GrounderDistance), 0, -transform.up, boxCastDistance, _stats.GroundLayer);
+            wallHit = Physics2D.BoxCast(transform.position, wallCheckSize, 0, transform.right, wallCheckDistance, _stats.GroundLayer) ||
+            Physics2D.BoxCast(transform.position, wallCheckSize, 0, -transform.right, wallCheckDistance, _stats.GroundLayer);
             bool ceilingHit = Physics2D.BoxCast(transform.position, new Vector2(boxSize.x, _stats.GrounderDistance), 0, transform.up, boxCastDistance, _stats.GroundLayer);
 
-            // Hit a Ceiling
-            if (ceilingHit) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
+            // Hit a Ceiling.
+            //if (ceilingHit && !_grounded) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
 
             // Landed on the Ground
-            if (!_grounded && groundHit)
+            if (!_grounded && (groundHit || (wallHit && _frameVelocity.y < 0 && _frameInput.Move.x != 0f)))
             {
                 _grounded = true;
                 _coyoteUsable = true;
@@ -113,7 +123,7 @@ using UnityEngine;
                 GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
             }
             // Left the Ground
-            else if (_grounded && !groundHit)
+            else if (_grounded && !groundHit && (!wallHit || _frameVelocity.y > 0 || _frameInput.Move.x == 0f))
             {
                 _grounded = false;
                 _frameLeftGrounded = _time;
@@ -226,7 +236,7 @@ using UnityEngine;
             //if on ground, apply grounding force
             else if (_grounded && _frameVelocity.y <= 0f)
             {
-                _frameVelocity.y = _stats.GroundingForce;
+                _frameVelocity.y = wallHit ? _stats.WallSlideForce : _stats.GroundingForce;
             }
             //otherwise apply gravity
             else
