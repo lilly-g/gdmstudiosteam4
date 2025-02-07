@@ -22,8 +22,19 @@ public class CardManager
 
 public abstract class Card
 {
+    private CardCollectable sourceCollectable;
+
     abstract public Color getColor();
-    abstract public void Play(GameObject pObj);
+
+    virtual public void Play(GameObject pObj)
+    {
+        sourceCollectable.SignalCardPlayed();
+    }
+
+    virtual public void setSource(CardCollectable source)
+    {
+        sourceCollectable = source;
+    }
 
     virtual public bool CanPlay(GameObject pObj)
     {
@@ -47,6 +58,7 @@ public class GrappleCard : Card
     override public void Play(GameObject pObj)
     {
         Debug.Log("Grapple Card Played!");
+        base.Play(pObj);
         pObj.GetComponentInChildren<GrapplingGun>().SetGrapple();
     }
 
@@ -66,6 +78,7 @@ public class DashCard : Card
     override public void Play(GameObject pObj)
     {
         Debug.Log("Dash Card Played!");
+        base.Play(pObj);
         pObj.GetComponent<PlayerController>().Dash();
     }
 

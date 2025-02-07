@@ -166,6 +166,7 @@ using UnityEngine;
         private void HandleDirection()
         {
             var deceleration = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
+            var acceleration = _grounded ? _stats.GroundAcceleration : _stats.AirAcceleration;
 
             if (_grapple.grappleRope.isGrappling)
             {
@@ -195,13 +196,13 @@ using UnityEngine;
                     _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
                 }
                 else{
-                    _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
+                    _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, acceleration * Time.fixedDeltaTime);
                 }
             }
             //accelerate to max speed
             else
             {
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
+                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, acceleration * Time.fixedDeltaTime);
             }
         }
 
