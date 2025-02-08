@@ -33,7 +33,7 @@ public class Goal : MonoBehaviour
 */
 
 using UnityEngine;
-using UnityEngine.SceneManagement; // Required for scene loading
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GoalTrigger : MonoBehaviour
@@ -42,7 +42,7 @@ public class GoalTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Ensure the player has the correct tag
+        if (other.CompareTag("Player") && other.GetType().ToString().Equals("UnityEngine.CapsuleCollider2D")) // Ensure the player has the correct tag
         {
             StartCoroutine(LoadSceneAsync());
         }
