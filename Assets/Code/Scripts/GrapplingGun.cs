@@ -114,16 +114,19 @@ public class GrapplingGun : MonoBehaviour
 
             foreach (var point in taggedPoints)
             {
-                Vector2 distanceVector = point.transform.position - firePoint.position;
-                float distanceFloat = Vector2.Distance(point.transform.position, firePoint.position);
-                RaycastHit2D _hit;
-
-                _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized, Mathf.Infinity, ~playerLayer);
-
-                if ((distanceFloat <= minDistance) && (_hit && (1 << _hit.collider.gameObject.layer) == grappleableLayer))
+                if (point.gameObject.GetComponent<GrapplePoint>().IsActive())
                 {
-                    minDistance = distanceFloat;
-                    grapplePoint = point;
+                    Vector2 distanceVector = point.transform.position - firePoint.position;
+                    float distanceFloat = Vector2.Distance(point.transform.position, firePoint.position);
+                    RaycastHit2D _hit;
+
+                    _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized, Mathf.Infinity, ~playerLayer);
+
+                    if ((distanceFloat <= minDistance) && (_hit && (1 << _hit.collider.gameObject.layer) == grappleableLayer))
+                    {
+                        minDistance = distanceFloat;
+                        grapplePoint = point;
+                    }
                 }
             }
 
@@ -132,12 +135,15 @@ public class GrapplingGun : MonoBehaviour
                 if (grapplePoint.gameObject.CompareTag("Slingshot"))
                 {
                     launchToPoint = true;
+                    
                 }
                 else{
                     launchToPoint = false;
                 }
 
                 grappledObj = grapplePoint.gameObject;
+                grappledObj.GetComponent<GrapplePoint>().OnGrapple();
+                
                 SetGrapplePoint();
                 return true;
             }
@@ -227,6 +233,7 @@ public class GrapplingGun : MonoBehaviour
         m_springJoint2D.enabled = false;
             
         playerController.GrappleReleased();
+        grappledObj.GetComponent<GrapplePoint>().OnRelease();
     }
 
     private void OnDrawGizmosSelected()
