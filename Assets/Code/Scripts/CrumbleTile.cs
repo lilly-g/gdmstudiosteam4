@@ -1,12 +1,17 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CrumbleTile : MonoBehaviour
 {
-    [SerializeField] private float crumbleTime = 1f;
+    [SerializeField] private float crumbleTime = 0.5f;
+    [SerializeField] private float respawnTime = 1f;
+    [SerializeField] private bool canRespawn;
+    [SerializeField] private bool onlyBreaksOnDash;
     private Tilemap tileMap;
     private Camera m_camera;
+    private List<Vector3Int> crumblingTiles = new List<Vector3Int>();
 
     void Start()
     {
@@ -18,7 +23,7 @@ public class CrumbleTile : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Vector3Int tilePos = Vector3Int.FloorToInt(m_camera.ScreenToWorldPoint(Input.mousePosition));
+            Vector3Int tilePos = tileMap.WorldToCell(m_camera.ScreenToWorldPoint(Input.mousePosition));
             tilePos.z = 0;
             Debug.Log(tilePos);
             Debug.Log(tileMap.GetTile(tilePos));
@@ -37,17 +42,41 @@ public class CrumbleTile : MonoBehaviour
 
     public void HandleCrumbling(Collision2D collision)
     {
-        Vector3Int tilePos = Vector3Int.FloorToInt(collision.transform.position);
-        tilePos.y -= 1;
-        tilePos.z = 0;
-        IEnumerator coroutine = DeleteTile(tilePos);
-        StartCoroutine(coroutine);
+        //ContactPoint2D[] contacts = new ContactPoint2D[];
+        float localCrumbleTime = collision.gameObject.GetComponent<PlayerController>().isDashing ? 0f : crumbleTime;
+        if (collision.gameObject.GetComponent<PlayerController>().isDashing || !onlyBreaksOnDash)
+        {
+            foreach (ContactPoint2D hit in collision.contacts)
+            {
+                Vector3Int tilePos = tileMap.WorldToCell(new Vector3(hit.point.x + 0.1f * hit.normal.x, hit.point.y + 0.1f * hit.normal.y, 0));
+                if (!crumblingTiles.Contains(tilePos))
+                {
+                    crumblingTiles.Add(tilePos);
+                    IEnumerator crumbleCoroutine = DeleteTile(tilePos, localCrumbleTime);
+                    StartCoroutine(crumbleCoroutine);
+                }
+
+            }
+        }
     }
 
-    IEnumerator DeleteTile(Vector3Int tilePos)
+    IEnumerator DeleteTile(Vector3Int tilePos, float crumbleTime)
     {
         yield return new WaitForSeconds(crumbleTime);
-        Debug.Log("Crumbling Tile: " + tilePos);
+        TileBase originalTile = tileMap.GetTile(tilePos);
         tileMap.SetTile(tilePos, null);
+        crumblingTiles.Remove(tilePos);
+
+        if (canRespawn)
+        {
+            IEnumerator respawnCoroutine = Respawn(tilePos, originalTile);
+            StartCoroutine(respawnCoroutine);
+        }
+    }
+
+    IEnumerator Respawn(Vector3Int tilePos, TileBase tile)
+    {
+        yield return new WaitForSeconds(respawnTime);
+        tileMap.SetTile(tilePos, tile);
     }
 }

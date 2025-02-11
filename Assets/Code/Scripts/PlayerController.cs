@@ -226,7 +226,7 @@ using UnityEngine;
             //if dashing, apply dash force
             if (_time < frameDashed + _stats.DashTime)
             {
-                _frameVelocity = dashDirection * _stats.DashSpeed;
+                _frameVelocity = Vector2.ClampMagnitude(dashDirection * _stats.DashSpeed, _stats.DashSpeed);
             }
             //if launching to grapple, apply launch force
             else if (_grapple.grappleRope.isGrappling && _grapple.launchToPoint)

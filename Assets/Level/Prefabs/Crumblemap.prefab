@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2976906532835484423}
   - component: {fileID: 8428592732884124924}
   - component: {fileID: 4486442175950617975}
-  - component: {fileID: 4400315195778688161}
   - component: {fileID: 8510226411695970340}
   - component: {fileID: 2744845847197241294}
   - component: {fileID: 8139196924120502904}
+  - component: {fileID: 4400315195778688161}
   m_Layer: 6
   m_Name: Crumblemap
   m_TagString: Ground
@@ -151,19 +151,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &4400315195778688161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2218368700691664594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb9cdfa908203ea478310143d00d54b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crumbleTime: 0.5
 --- !u!50 &8510226411695970340
 Rigidbody2D:
   serializedVersion: 5
@@ -276,3 +263,19 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 2218368700691664594}
+--- !u!114 &4400315195778688161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2218368700691664594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9cdfa908203ea478310143d00d54b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crumbleTime: 0.5
+  respawnTime: 1
+  canRespawn: 0
+  onlyBreaksOnDash: 0
