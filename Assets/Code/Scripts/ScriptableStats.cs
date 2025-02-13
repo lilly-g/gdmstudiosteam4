@@ -3,8 +3,11 @@ using UnityEngine;
     [CreateAssetMenu]
     public class ScriptableStats : ScriptableObject
     {
-        [Header("LAYERS")] [Tooltip("Set this to the layer ground objects are on")]
+        [Header("LAYERS")] [Tooltip("Layers that should be treated as ground")]
         public LayerMask GroundLayer;
+
+        [Tooltip("Layers that can be walljumped off of")]
+        public LayerMask ClimbableLayer;
 
         [Header("INPUT")] [Tooltip("Makes all Input snap to an integer. Prevents gamepads from walking slowly. Recommended value is true to ensure gamepad/keybaord parity.")]
         public bool SnapInput = true;
@@ -74,5 +77,7 @@ using UnityEngine;
 
         [Header("Dash")] [Tooltip("Speed player moves while dashing")]
         public float DashSpeed = 40f;
+
+        [Tooltip("Amount of time player dashses for")]
         public float DashTime = .5f;
     }

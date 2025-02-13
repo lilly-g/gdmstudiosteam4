@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float verticalOffset = 5f;
+    [SerializeField] private float verticalOffset = 4f;
     [SerializeField] private float horizontalOffset = 2f;
     private Rigidbody2D player;
     private float currentHorizontalOffset;

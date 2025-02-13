@@ -98,23 +98,43 @@ using UnityEngine;
         [HideInInspector] public MovingPlatform _platform = null;
 
         //fix this
-        bool wallHit = false;
+        bool wallHitLeft = false;
+        bool wallHitRight = false;
+        bool bufferWallSliding = false;
+        bool isWallSliding = false;
+        float _frameLeftWall = float.MinValue;
 
         private void CheckCollisions()
         {
             Physics2D.queriesStartInColliders = false;
 
-            // Ground and Ceiling
+            // Ground, Ceiling, and Walls
             bool groundHit = Physics2D.BoxCast(transform.position, new Vector2(boxSize.x, _stats.GrounderDistance), 0, -transform.up, boxCastDistance, _stats.GroundLayer);
-            wallHit = Physics2D.BoxCast(transform.position, wallCheckSize, 0, transform.right, wallCheckDistance, _stats.GroundLayer) ||
-            Physics2D.BoxCast(transform.position, wallCheckSize, 0, -transform.right, wallCheckDistance, _stats.GroundLayer);
             bool ceilingHit = Physics2D.BoxCast(transform.position, new Vector2(boxSize.x, _stats.GrounderDistance), 0, transform.up, boxCastDistance, _stats.GroundLayer);
+            wallHitLeft = Physics2D.BoxCast(transform.position, wallCheckSize, 0, -transform.right, wallCheckDistance, _stats.ClimbableLayer);
+            wallHitRight = Physics2D.BoxCast(transform.position, wallCheckSize, 0, transform.right, wallCheckDistance, _stats.ClimbableLayer);
 
             // Hit a Ceiling.
             //if (ceilingHit && !_grounded) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
 
+            //Sliding on Wall
+            bufferWallSliding = (((wallHitLeft && _frameInput.Move.x == -1) || (wallHitRight && _frameInput.Move.x == 1)) && !_grounded && _frameVelocity.y < 0);
+
+            if (!isWallSliding && bufferWallSliding)
+            {
+                isWallSliding = true;
+                _coyoteUsable = true;
+                _bufferedJumpUsable = true;
+                _endedJumpEarly = false;
+            }
+            else if (isWallSliding && !bufferWallSliding)
+            {
+                isWallSliding = false;
+                _frameLeftWall = _time;
+            }
+
             // Landed on the Ground
-            if (!_grounded && (groundHit || (wallHit && _frameVelocity.y < 0 && _frameInput.Move.x != 0f)))
+            if (!_grounded && groundHit)
             {
                 _grounded = true;
                 _coyoteUsable = true;
@@ -123,7 +143,7 @@ using UnityEngine;
                 GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
             }
             // Left the Ground
-            else if (_grounded && !groundHit && (!wallHit || _frameVelocity.y > 0 || _frameInput.Move.x == 0f))
+            else if (_grounded && !groundHit)
             {
                 _grounded = false;
                 _frameLeftGrounded = _time;
@@ -145,7 +165,8 @@ using UnityEngine;
         private float _timeJumpWasPressed;
 
         private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _stats.JumpBuffer;
-        private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
+        private bool CanUseCoyote => _coyoteUsable && !_grounded && (_time < _frameLeftGrounded + _stats.CoyoteTime);
+        private bool CanUseWallCoyote => _coyoteUsable && !isWallSliding && (_time < _frameLeftWall + _stats.CoyoteTime);
         private bool HasGrappleGrace => !_grounded && _time < _frameLeftGrapple + _stats.GrappleGrace;
         
         private void HandleJump()
@@ -154,19 +175,40 @@ using UnityEngine;
 
             if (!_jumpToConsume && !HasBufferedJump) return;
 
-            if (_grounded || CanUseCoyote || HasGrappleGrace) ExecuteJump();
+            if ((wallHitLeft || wallHitRight) || CanUseWallCoyote){
+                ExecuteWallJump();
+            }
+            else if (_grounded || CanUseCoyote || HasGrappleGrace){
+                ExecuteJump();
+            }
 
             _jumpToConsume = false;
         }
 
         private void ExecuteJump()
         {
+            SetJump();
+            _frameVelocity.y = (_time < _frameLeftGrapple + _stats.BoostJumpWindow) ? _stats.BoostJumpPower : _stats.JumpPower;
+            Jumped?.Invoke();
+        }
+
+        private void ExecuteWallJump()
+        {
+            SetJump();
+            isWallSliding = false;
+
+            float wallKickOff = _stats.JumpPower/2f;
+            _frameVelocity.y = _stats.JumpPower;
+            _frameVelocity.x = wallHitLeft ? wallKickOff : -wallKickOff;
+            Jumped?.Invoke();
+        }
+
+        private void SetJump()
+        {
             _endedJumpEarly = false;
             _timeJumpWasPressed = 0;
             _bufferedJumpUsable = false;
             _coyoteUsable = false;
-            _frameVelocity.y = (_time < _frameLeftGrapple + _stats.BoostJumpWindow) ? _stats.BoostJumpPower : _stats.JumpPower;
-            Jumped?.Invoke();
         }
 
         #endregion
@@ -236,7 +278,12 @@ using UnityEngine;
             //if on ground, apply grounding force
             else if (_grounded && _frameVelocity.y <= 0f)
             {
-                _frameVelocity.y = wallHit ? _stats.WallSlideForce : _stats.GroundingForce;
+                _frameVelocity.y = _stats.GroundingForce;
+            }
+            //if sliding on wall, apply wallslide force
+            else if (isWallSliding)
+            {
+                _frameVelocity.y = _stats.WallSlideForce;
             }
             //otherwise apply gravity
             else

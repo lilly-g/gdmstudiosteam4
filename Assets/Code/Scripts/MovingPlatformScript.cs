@@ -7,14 +7,12 @@ public class MovingPlatform : MonoBehaviour
     private float direction;
     private Rigidbody2D _rb;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         direction = speed; //it starts by moving right
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Vector2.Distance(transform.position, Left.position) < .1f) { 
