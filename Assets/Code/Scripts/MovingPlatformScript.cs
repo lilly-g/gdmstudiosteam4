@@ -1,9 +1,14 @@
 using UnityEngine;
+using System.Collections;
 
 public class MovingPlatform : MonoBehaviour
 {
     [SerializeField] private Transform Left, Right;
     [SerializeField] private float speed;
+    [SerializeField] private float waitTime;
+    [SerializeField] private float acceleration;
+    [SerializeField] private bool accelerates;
+
     private float direction;
     private Rigidbody2D _rb;
 
@@ -15,15 +20,18 @@ public class MovingPlatform : MonoBehaviour
 
     void Update()
     {
-        if (Vector2.Distance(transform.position, Left.position) < .1f) { 
-            direction = speed;
+        if ((Vector2.Distance(transform.position, Left.position) < .1f) && direction == -speed) {
+            direction = 0f;
+            IEnumerator changeDir = ChangeDirection(speed);
+            StartCoroutine(changeDir);
         }
-        
-        if (Vector2.Distance(transform.position, Right.position) < .1f) { 
-            direction = -speed;
+        else if ((Vector2.Distance(transform.position, Right.position) < .1f) && direction == speed) {
+            direction = 0f;
+            IEnumerator changeDir = ChangeDirection(-speed);
+            StartCoroutine(changeDir);
         }
 
-        _rb.linearVelocity = new Vector2 (direction, _rb.linearVelocity.y);
+        _rb.linearVelocity = new Vector2 (accelerates ? Mathf.MoveTowards(_rb.linearVelocity.x, direction, acceleration * Time.fixedDeltaTime) : direction, _rb.linearVelocity.y);
     }
 
     //make it so player can stand on the platform
@@ -40,6 +48,12 @@ public class MovingPlatform : MonoBehaviour
             Debug.Log("exit platform");
             collision.gameObject.GetComponent<PlayerController>()._platform = null;
         }
+    }
+
+    IEnumerator ChangeDirection(float dir)
+    {
+        yield return new WaitForSeconds(waitTime);
+        direction = dir;
     }
 
     public float getDirection()
