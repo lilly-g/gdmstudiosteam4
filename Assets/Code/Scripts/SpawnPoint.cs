@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    [SerializeField] private GameObject spawn;
-    
+    [SerializeField] private GameObject spawn; // The prefab to spawn
+    [SerializeField] private ParticleSystem groundHitParticles; // Assign in Inspector
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
@@ -14,7 +15,12 @@ public class SpawnPoint : MonoBehaviour
     {
         if (spawn != null)
         {
-            Instantiate(spawn, transform.position, Quaternion.identity);
+            GameObject spawnedCharacter = Instantiate(spawn, transform.position, Quaternion.identity);
+
+            if (groundHitParticles != null)
+            {
+                groundHitParticles.transform.SetParent(spawnedCharacter.transform);
+            }
         }
     }
 }
