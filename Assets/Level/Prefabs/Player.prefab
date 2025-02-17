@@ -355,7 +355,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 19.528734
+  m_Distance: 47.46588
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!114 &1031981883720857484
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundHitParticlesPrefab: {fileID: 2176676020326173197, guid: 1782c7ba286794f6bbd190aefb82c619, type: 3}
   _stats: {fileID: 11400000, guid: 39deb6bac84fb7c48888f28901d5767b, type: 2}
-  boxSize: {x: 1.3, y: 0.03}
+  boxSize: {x: 1.238, y: 0.03}
   boxCastDistance: 1.05
   wallCheckSize: {x: 0.03, y: 1.5}
   wallCheckDistance: 0.62

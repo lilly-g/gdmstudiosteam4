@@ -41,4 +41,4 @@ MonoBehaviour:
   BoostJumpWindow: 0.15
   BoostJumpPower: 50
   DashSpeed: 40
-  DashTime: 0.2
+  DashTime: 0.15

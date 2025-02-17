@@ -116,7 +116,7 @@ using UnityEngine;
             wallHitRight = Physics2D.BoxCast(transform.position, wallCheckSize, 0, transform.right, wallCheckDistance, _stats.ClimbableLayer);
 
             // Hit a Ceiling.
-            //if (ceilingHit && !_grounded) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
+            if (ceilingHit && !_grounded) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
 
             //Sliding on Wall
             bufferWallSliding = (((wallHitLeft && _frameInput.Move.x == -1) || (wallHitRight && _frameInput.Move.x == 1)) && !_grounded && _frameVelocity.y < 0);
@@ -241,6 +241,7 @@ using UnityEngine;
             //decelerate to 0 if not inputting
             else if (_frameInput.Move.x == 0)
             {
+                //if on platform, move with platform
                 if (_platform != null)
                 {
                     _frameVelocity.x = _platform.getDirection();
@@ -314,11 +315,7 @@ using UnityEngine;
         //called once when grapple begins
         public void Grappled()
         {
-            //when launching, provide inital boost towards point
-            if (_grapple.launchToPoint)
-            {
-                //_frameVelocity = _grapple.grappleDistanceVector.normalized * 2;
-            }
+
         }
 
         //called once when grapple is released
