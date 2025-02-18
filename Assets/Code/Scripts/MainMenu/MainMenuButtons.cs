@@ -1,33 +1,62 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuButtons : MonoBehaviour
+public class MainMenuButtons : PopupWithPrompt
 {
-    [HideInInspector]
-    public static bool newGamePressed = false;
-
-    public string nextSceneName;
-    public int delayAtEndOfLoad;
-
+    // UI, QOL
     public GameObject currentScreen;
     public GameObject loadingScreen;
     public Image loadingBar;
+    public int delayAtEndOfLoad;
 
-    public void NewGame() {
-        newGamePressed = true;
-        StartCoroutine(LoadNewScene());
+    // PlayerPrefs
+    private static string levelsCompletedString = "levelsCompleted";
+    private static int levelsCompletedInt;
+
+    // Checks
+    private static bool newGamePressed = false;
+
+    // Getters
+    public static bool GetNewGamePressed() {
+        return newGamePressed;
     }
 
-    IEnumerator LoadNewScene() {
+    // Setters
+    public static void SetNewGamePressed() {
+        newGamePressed = false;
+    }
+
+    // Inheritance
+    public override void YesAction()
+    {
+        SetNewGamePressed();
+        PlayerPrefs.SetInt(levelsCompletedString, 1);
+        levelsCompletedInt = PlayerPrefs.GetInt(levelsCompletedString);
+        StartCoroutine(LoadNewScene(levelsCompletedInt));
+    }
+
+    public override void NoAction()
+    {
+        SetNewGamePressed();
+    }
+
+    // Button methods
+    public void NewGame() {
+        newGamePressed = true;
+    }
+
+    IEnumerator LoadNewScene(int sceneIndex) {
         if (currentScreen.GetComponent<CanvasGroup>() != null) {
             currentScreen.GetComponent<CanvasGroup>().alpha = 0f;
             currentScreen.GetComponent<CanvasGroup>().interactable = false;
         }
         loadingScreen.SetActive(true);
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneName);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex);
         asyncLoad.allowSceneActivation = false;
         
         // Fill loading bar till 90% full
@@ -54,5 +83,16 @@ public class MainMenuButtons : MonoBehaviour
 
     void Config() {
 
+    }
+
+    void Update()
+    {
+        setToggle(newGamePressed);
+        setYes(Input.GetKeyUp(KeyCode.Y));
+        setNo(Input.GetKeyUp(KeyCode.N));
+
+        if (!QuitGame.GetQuitStatus()) {
+            ToggleUI();
+        }
     }
 }

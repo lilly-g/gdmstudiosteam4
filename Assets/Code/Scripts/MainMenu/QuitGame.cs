@@ -1,55 +1,50 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-public class QuitGame : MonoBehaviour
+public class QuitGame : PopupWithPrompt
 {
-    public GameObject quitUI;
-    public float transparencyAlpha;
-    private bool quitConfirm = false;
+    // Checks
+    private static bool quitPopupToggled = false;
+
+    // Getters
+    public static bool GetQuitStatus() {
+        return quitPopupToggled;
+    } 
+
+    // Setters
+    public static void SetQuitStatus() {
+        quitPopupToggled = false;
+    }
 
     // Update is called once per frame
-    void Update() {
-        if (!MainMenuButtons.newGamePressed) {
-            if (!quitConfirm && Input.GetKeyUp(KeyCode.Escape)) {
-                quitConfirm = true;
-            }
+    void Update() { 
+        if (Input.GetKeyUp(KeyCode.Escape)) {
+            quitPopupToggled = true;
+        }       
 
-            quitUI.SetActive(quitConfirm);
+        setToggle(quitPopupToggled);
+        setYes(Input.GetKeyUp(KeyCode.Y));
+        setNo(Input.GetKeyUp(KeyCode.N));
 
-            switch (quitConfirm)
-            {
-                case true:
-                    if (gameObject.GetComponent<CanvasGroup>() != null) {
-                        gameObject.GetComponent<CanvasGroup>().alpha = transparencyAlpha;
-                        gameObject.GetComponent<CanvasGroup>().interactable = false;
-                    }
-                    break;
-                case false:
-                    if (gameObject.GetComponent<CanvasGroup>() != null) {
-                        gameObject.GetComponent<CanvasGroup>().alpha = 1f;
-                        gameObject.GetComponent<CanvasGroup>().interactable = true;
-                    }
-                    break;
-            }
-
-            if (quitConfirm) {
-                if (Input.GetKeyUp(KeyCode.Y)) {
-                    Quit();
-                }
-
-                if (Input.GetKeyUp(KeyCode.N)) {
-                    quitConfirm = false;
-                }
-            }
+        if (!MainMenuButtons.GetNewGamePressed()) {
+            ToggleUI();
         }
     }
 
-    void Quit() {
+    override public void YesAction() {
         Application.Quit();
 
         // Ensure it stops playing in the Unity Editor
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #endif
+    }
+
+    public override void NoAction()
+    {
+        SetQuitStatus();
     }
 }
