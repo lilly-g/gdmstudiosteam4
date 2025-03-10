@@ -4,7 +4,6 @@ using UnityEngine;
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
-        [SerializeField] private ParticleSystem groundHitParticlesPrefab;
         [SerializeField] private ScriptableStats _stats;
         private GrapplingGun _grapple;
         private Rigidbody2D _rb;
@@ -103,7 +102,7 @@ using UnityEngine;
         bool wallHitLeft = false;
         bool wallHitRight = false;
         bool bufferWallSliding = false;
-        bool isWallSliding = false;
+        public bool isWallSliding = false;
         float _frameLeftWall = float.MinValue;
 
         private void CheckCollisions()
@@ -143,14 +142,6 @@ using UnityEngine;
                 _bufferedJumpUsable = true;
                 _endedJumpEarly = false;
                 GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
-
-                // Instantiate and play ground hit particle effect
-                if (groundHitParticlesPrefab != null)
-                {
-                    ParticleSystem newParticles = Instantiate(groundHitParticlesPrefab, transform.position, Quaternion.identity);
-                    newParticles.Play();
-                    Destroy(newParticles.gameObject, 1f); // Destroy after 1 second
-                }
             }
             // Left the Ground
             else if (_grounded && !groundHit)
