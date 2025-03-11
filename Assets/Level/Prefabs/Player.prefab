@@ -407,11 +407,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: 39deb6bac84fb7c48888f28901d5767b, type: 2}
-  boxSize: {x: 1.238, y: 0.03}
+  boxSize: {x: 1.2, y: 0.03}
   boxCastDistance: 1
   wallCheckSize: {x: 0.03, y: 1.5}
   wallCheckDistance: 0.6
   _platform: {fileID: 0}
+  isWallSliding: 0
   isDashing: 0
 --- !u!114 &7195964719415874985
 MonoBehaviour:
