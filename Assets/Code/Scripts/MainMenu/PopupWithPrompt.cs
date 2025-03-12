@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Specialized;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public abstract class PopupWithPrompt : MonoBehaviour
