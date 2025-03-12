@@ -4,7 +4,6 @@ using UnityEngine;
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
-        [SerializeField] private ParticleSystem groundHitParticlesPrefab;
         [SerializeField] private ScriptableStats _stats;
         private GrapplingGun _grapple;
         private Rigidbody2D _rb;
@@ -50,9 +49,10 @@ using UnityEngine;
         {
             _time += Time.deltaTime;
 
-            if (_time >= frameDashed + _stats.DashTime)
+            if (isDashing && _time >= frameDashed + _stats.DashTime)
             {
                 isDashing = false;
+                EndDash();
             }
 
             GatherInput();
@@ -95,14 +95,14 @@ using UnityEngine;
         
         private float _frameLeftGrounded = float.MinValue;
         private float _frameLeftGrapple = float.MinValue;
+        private bool _jumping;
         private bool _grounded;
         [HideInInspector] public MovingPlatform _platform = null;
 
-        //fix this
         bool wallHitLeft = false;
         bool wallHitRight = false;
         bool bufferWallSliding = false;
-        bool isWallSliding = false;
+        public bool isWallSliding = false;
         float _frameLeftWall = float.MinValue;
 
         private void CheckCollisions()
@@ -142,14 +142,6 @@ using UnityEngine;
                 _bufferedJumpUsable = true;
                 _endedJumpEarly = false;
                 GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
-
-                // Instantiate and play ground hit particle effect
-                if (groundHitParticlesPrefab != null)
-                {
-                    ParticleSystem newParticles = Instantiate(groundHitParticlesPrefab, transform.position, Quaternion.identity);
-                    newParticles.Play();
-                    Destroy(newParticles.gameObject, 1f); // Destroy after 1 second
-                }
             }
             // Left the Ground
             else if (_grounded && !groundHit)
@@ -157,6 +149,10 @@ using UnityEngine;
                 _grounded = false;
                 _frameLeftGrounded = _time;
                 GroundedChanged?.Invoke(false, 0);
+            }
+
+            if (_jumping && _frameVelocity.y < 0){
+                _jumping = false;
             }
 
             Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
@@ -180,7 +176,7 @@ using UnityEngine;
         
         private void HandleJump()
         {
-            if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0) _endedJumpEarly = true;
+            if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0 && _jumping) _endedJumpEarly = true;
 
             if (!_jumpToConsume && !HasBufferedJump) return;
 
@@ -214,6 +210,7 @@ using UnityEngine;
 
         private void SetJump()
         {
+            _jumping = true;
             _endedJumpEarly = false;
             _timeJumpWasPressed = 0;
             _bufferedJumpUsable = false;
@@ -237,6 +234,10 @@ using UnityEngine;
                 {
                     _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeedGrappled, _stats.GrappleAcceleration * Time.fixedDeltaTime);
                 }
+            }
+            //if dashing, don't decelerate
+            else if (isDashing){
+
             }
             //decelerate to 0 if not inputting
             else if (_frameInput.Move.x == 0)
@@ -275,10 +276,10 @@ using UnityEngine;
 
         private void HandleGravity()
         {
-            //if dashing, apply dash force
+            //if dashing, don't apply gravity
             if (_time < frameDashed + _stats.DashTime)
             {
-                _frameVelocity = Vector2.ClampMagnitude(dashDirection * _stats.DashSpeed, _stats.DashSpeed);
+                _frameVelocity = Vector2.MoveTowards(_frameVelocity, Vector2.zero, _stats.DashDeceleration * Time.fixedDeltaTime);
             }
             //if launching to grapple, apply launch force
             else if (_grapple.grappleRope.isGrappling && _grapple.launchToPoint)
@@ -315,7 +316,7 @@ using UnityEngine;
         //called once when grapple begins
         public void Grappled()
         {
-
+            _jumping = false;
         }
 
         //called once when grapple is released
@@ -344,9 +345,15 @@ using UnityEngine;
 
         public void Dash()
         {
-            dashDirection = _frameInput.Move;
+            dashDirection = _frameInput.Move.normalized;
+            _jumping = false;
             isDashing = true;
             frameDashed = _time;
+            _frameVelocity = dashDirection * _stats.DashSpeed;
+        }
+
+        public void EndDash(){
+            
         }
 
         #endregion

@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "gdmstudiosteam4.sln"
+    "dotnet.defaultSolution": "gdm_studios.sln"
 }

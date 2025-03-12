@@ -78,6 +78,9 @@ using UnityEngine;
         [Header("Dash")] [Tooltip("Speed player moves while dashing")]
         public float DashSpeed = 40f;
 
+        [Tooltip("Deceleration while dashing")]
+        public float DashDeceleration = 40f;
+
         [Tooltip("Amount of time player dashses for")]
         public float DashTime = .5f;
     }

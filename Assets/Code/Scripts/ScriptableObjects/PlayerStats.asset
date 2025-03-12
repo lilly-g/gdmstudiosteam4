@@ -40,5 +40,6 @@ MonoBehaviour:
   GrappleGrace: 0.3
   BoostJumpWindow: 0.15
   BoostJumpPower: 50
-  DashSpeed: 40
-  DashTime: 0.15
+  DashSpeed: 50
+  DashDeceleration: 120
+  DashTime: 0.2

@@ -19,8 +19,22 @@ public class DisplayCard : MonoBehaviour
 
     void Start()
     {
+        //For me sometimes the game doesnt run due to NullReferenceException,
+        //It could be because the player take some time to generate at the start of game
+        //Subsituting with the commented out code below solved my problem
         playerWithCardHolder = GameObject.FindWithTag("Player");
         cardHolder = playerWithCardHolder.GetComponent<CardHolder>();
+
+        /*      
+        playerWithCardHolder = GameObject.FindWithTag("Player");
+
+        if (playerWithCardHolder != null) {
+            cardHolder = playerWithCardHolder.GetComponent<CardHolder>();
+        }
+        else{ 
+            Debug.Log("Looking for Player object...");
+        }
+        */     
     }
 
     void Update() 
@@ -30,6 +44,14 @@ public class DisplayCard : MonoBehaviour
             playerWithCardHolder = GameObject.FindWithTag("Player");
             cardHolder = playerWithCardHolder.GetComponent<CardHolder>();
         }
+
+        /*
+        while (playerWithCardHolder == null)
+        {
+            playerWithCardHolder = GameObject.FindWithTag("Player");
+            cardHolder = playerWithCardHolder.GetComponent<CardHolder>();
+        }
+        */
 
         List<Card> cardList = cardHolder.getStackList();
 
