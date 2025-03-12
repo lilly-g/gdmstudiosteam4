@@ -5,24 +5,31 @@ using System.Collections;
 public class CardCollectable : MonoBehaviour
 {
     [SerializeField] private CardsEnum card;
+    [SerializeField] private Sprite dashSprite;
+    [SerializeField] private Sprite grappleSprite;
     [SerializeField] private bool canRespawn;
     private SpriteRenderer spriteRenderer;
+    private Sprite collectableSprite;
     private bool consumed = false;
     private float respawnTime = 1f;
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = CardManager.enumToCard(card).getColor();
     }
 
     void Update()
     {
-        //for the sake of convenience the colour of the sprite will automatically update in the editor if changed
-        Color cardColor = CardManager.enumToCard(card).getColor();
-        if (spriteRenderer.color != cardColor)
-        {
-            spriteRenderer.color = cardColor;
+        //for the sake of convenience the sprite will automatically update in the editor if the card is changed
+        if (card == CardsEnum.Grapple){
+            collectableSprite = grappleSprite;
+        }
+        else{
+            collectableSprite = dashSprite;
+        }
+
+        if (spriteRenderer.sprite != collectableSprite){
+            spriteRenderer.sprite = collectableSprite;
         }
     }
 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      squiggly_line_larger_0: 8807520618905980507
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
