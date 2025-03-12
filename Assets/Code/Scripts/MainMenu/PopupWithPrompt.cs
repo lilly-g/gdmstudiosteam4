@@ -12,6 +12,7 @@ public abstract class PopupWithPrompt : MonoBehaviour
     private bool toggle;
     private bool yesKey;
     private bool noKey;
+
     public abstract void YesAction();
     public abstract void NoAction();
 
@@ -30,7 +31,7 @@ public abstract class PopupWithPrompt : MonoBehaviour
 
     // to put inside Update
     public void ToggleUI() {
-        Debug.Log("Active: " + active);
+        // Debug.Log("Active: " + active);
 
         if (!active && toggle) {
             Debug.Log("Popup now appears");
@@ -64,5 +65,11 @@ public abstract class PopupWithPrompt : MonoBehaviour
                 active = false;
             }
         }
+    }
+
+    // Canvas changer
+    public void GoToCanvas(GameObject aCanvas) {
+        gameObject.SetActive(false);
+        aCanvas.SetActive(true);
     }
 }

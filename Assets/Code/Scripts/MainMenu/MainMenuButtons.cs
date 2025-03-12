@@ -5,17 +5,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuButtons : PopupWithPrompt
+public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
 {
     // UI, QOL
-    public GameObject currentScreen;
-    public GameObject loadingScreen;
-    public Image loadingBar;
-    public int delayAtEndOfLoad;
+    [SerializeField] private GameObject currentScreen;
+    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private Image loadingBar;
+    [SerializeField] private int delayAtEndOfLoad;
+    [SerializeField] private GameObject levelSelector;
+    [SerializeField] private GameObject configMenu;
+    [SerializeField] private GameObject loadButton;
 
     // PlayerPrefs
-    private static string levelsCompletedString = "levelsCompleted";
-    private static int levelsCompletedInt;
+    private string levelsCompletedString = "levelsCompleted";
+    private int levelsCompletedInt;
 
     // Checks
     private static bool newGamePressed = false;
@@ -34,9 +37,9 @@ public class MainMenuButtons : PopupWithPrompt
     public override void YesAction()
     {
         SetNewGamePressed();
-        PlayerPrefs.SetInt(levelsCompletedString, 1);
+        PlayerPrefs.SetInt(levelsCompletedString, 0);
         levelsCompletedInt = PlayerPrefs.GetInt(levelsCompletedString);
-        StartCoroutine(LoadNewScene(levelsCompletedInt));
+        StartCoroutine(LoadNewScene(levelsCompletedInt + 1));
     }
 
     public override void NoAction()
@@ -77,12 +80,22 @@ public class MainMenuButtons : PopupWithPrompt
         asyncLoad.allowSceneActivation = true;
     }
 
-    void LoadGame() {
-
+    public void GoToLevelSelector() {
+        GoToCanvas(levelSelector);
     }
 
-    void Config() {
+    public void GoToConfigMenu() {
+        GoToCanvas(configMenu);
+    }
 
+    void OnEnable()
+    {
+        if (!PlayerPrefs.HasKey(levelsCompletedString)) {
+            PlayerPrefs.SetInt(levelsCompletedString, 0);
+        }
+        levelsCompletedInt = PlayerPrefs.GetInt(levelsCompletedString);
+
+        // if (levelsCompletedInt == 0) loadButton.SetActive(false);
     }
 
     void Update()

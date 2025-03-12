@@ -23,12 +23,6 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Level/Scenes/Testing/Test_Yang.unity
   - m_enabled: 1
-    m_path: Assets/Level/Scenes/Testing/Levels_Demo1/Level0.1.unity
-  - m_enabled: 1
-    m_path: Assets/Level/Scenes/Testing/Levels_Demo1/Level0.2.unity
-  - m_enabled: 1
-    m_path: Assets/Level/Scenes/Testing/Levels_Demo1/Level1.1.unity
-  - m_enabled: 1
     m_path: Assets/Level/Scenes/Testing/Levels_Demo2/Level1.unity
   - m_enabled: 1
     m_path: Assets/Level/Scenes/Testing/Levels_Demo2/Level2.unity
