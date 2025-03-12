@@ -12,3 +12,4 @@ Temp/UnityLockfile
 Temp/UnityLockfile
 /Temp
 *.csproj
+.vscode
