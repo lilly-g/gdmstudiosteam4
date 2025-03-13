@@ -17,7 +17,7 @@ public class QuitGame : PopupWithPrompt
 
     // Update is called once per frame
     void Update() { 
-        if (Input.GetKeyUp(KeyCode.Escape)) {
+        if (Input.GetKeyUp(KeyCode.Escape) && gameObject.CompareTag("Mainmenu")) {
             quitPopupToggled = true;
         }       
 

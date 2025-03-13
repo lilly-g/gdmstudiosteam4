@@ -9,6 +9,7 @@ TagManager:
   - Slingshot
   - Swingshot
   - Collectable
+  - Mainmenu
   layers:
   - Default
   - TransparentFX

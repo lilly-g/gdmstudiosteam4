@@ -40,10 +40,19 @@ public class GoalTrigger : MonoBehaviour
 {
     public string nextSceneName; // Set this in the Inspector
 
+    // PlayerPrefs
+    private readonly string levelsCompletedString = "levelsCompleted";
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && other.GetType().ToString().Equals("UnityEngine.CapsuleCollider2D")) // Ensure the player has the correct tag
         {
+            int levelsCompletedInt = PlayerPrefs.GetInt(levelsCompletedString);
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            if (currentSceneIndex == levelsCompletedInt + 1) {
+                levelsCompletedInt += 1;
+                PlayerPrefs.SetInt(levelsCompletedString, levelsCompletedInt);
+            }
             StartCoroutine(LoadSceneAsync());
         }
     }

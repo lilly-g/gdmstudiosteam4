@@ -63,7 +63,7 @@ public class LevelControl : MonoBehaviour
     }
 
     public void AssignGameObjects() {
-        levelsCompletedInt = 18; 
+        levelsCompletedInt = PlayerPrefs.GetInt(levelsCompletedString); 
 
         for (int i = 0; i < levelGameObjects.Count; i++) {
             if (i < BIG_LEVEL_THRESHOLD) {
