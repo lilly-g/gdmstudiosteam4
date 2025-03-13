@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Internal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,15 +9,20 @@ using UnityEngine.UI;
 public class LevelControl : MonoBehaviour
 {
     [SerializeField] private List<GameObject> levelGameObjects;
-
+    [SerializeField] private List<GameObject> levelMapGameObjects;
     [SerializeField] private GameObject currentScreen;
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private Image loadingBar;
     [SerializeField] private int delayAtEndOfLoad;
+
+    public static int BIG_LEVEL_THRESHOLD = 16;
+    public static int LEVELS_PER_MAP = 8;
     
     // PlayerPrefs
     private string levelsCompletedString = "levelsCompleted";
     private int levelsCompletedInt;
+
+    private int currentMapPage;
 
     public void LoadLevel(int sceneIndex) {
         Debug.Log("LoadLevel called with index: " + sceneIndex);
@@ -50,18 +57,48 @@ public class LevelControl : MonoBehaviour
         asyncLoad.allowSceneActivation = true;
     }
 
+    private T attachLevelObject<T>(GameObject levelGameObject) where T : Indexed { 
+        T level = levelGameObject.AddComponent<T>();
+        return level;
+    }
+
     public void AssignGameObjects() {
-        levelsCompletedInt = PlayerPrefs.GetInt(levelsCompletedString);
+        levelsCompletedInt = 18; 
 
         for (int i = 0; i < levelGameObjects.Count; i++) {
-            Level level = levelGameObjects[i].AddComponent<Level>();
-            level.Index = i;
+            if (i < BIG_LEVEL_THRESHOLD) {
+                attachLevelObject<Level>(levelGameObjects[i]).Index = i;
+            }
+            else {
+                attachLevelObject<BigLevel>(levelGameObjects[i]).Index = i;
+            }
             Debug.Log("Level " + (i+1) + " added.");
 
             levelGameObjects[i].SetActive(i <= levelsCompletedInt);
         }
+
+        for (int i = 0; i < levelMapGameObjects.Count; i++) {
+            levelMapGameObjects[i].GetComponent<LevelMap>().ArrowLeft.SetActive(i != 0);
+
+            levelMapGameObjects[i].GetComponent<LevelMap>().ArrowRight.SetActive(i != levelMapGameObjects.Count - 1);
+        }
+
+        currentMapPage = levelsCompletedInt / LEVELS_PER_MAP;
+        levelMapGameObjects[currentMapPage].SetActive(true);
     }
 
+    public void goRight() {
+        currentMapPage += 1;
+        levelMapGameObjects[currentMapPage].SetActive(true);
+        levelMapGameObjects[currentMapPage - 1].SetActive(false);
+    }
+    
+    public void goLeft() {
+        currentMapPage -= 1;
+        levelMapGameObjects[currentMapPage].SetActive(true);
+        levelMapGameObjects[currentMapPage + 1].SetActive(false);
+
+    }
     void OnEnable()
     {
         AssignGameObjects();

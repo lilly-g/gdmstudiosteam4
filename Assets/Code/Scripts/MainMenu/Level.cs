@@ -2,20 +2,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Level : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Level : Indexed, IPointerEnterHandler, IPointerExitHandler
 {
     public static Vector3 hoverScale = new Vector3(0.5f, 0.5f, 0.5f);
     public static Vector3 normalScale = new Vector3(0.25f, 0.25f, 0.25f);
     
-    public int Index{get; set;}
-    
     private Button myButton;
 
-    public void OnPointerEnter(PointerEventData eventData) {
+    public virtual void OnPointerEnter(PointerEventData eventData) {
         gameObject.transform.localScale = hoverScale;
     }
 
-    public void OnPointerExit(PointerEventData eventData) {
+    public virtual void OnPointerExit(PointerEventData eventData) {
         gameObject.transform.localScale = normalScale;
     }
 

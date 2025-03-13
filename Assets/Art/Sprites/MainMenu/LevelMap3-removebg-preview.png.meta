@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3d47079bfceda8d4e94e85a02b457071
+guid: b75705d2db176f644adb8680f5c3ee2b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4602125457661078038
-    second: IMG_0775_0
+      213: -5354645515365084173
+    second: LevelMap3-removebg-preview_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_0775_0
+      name: LevelMap3-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 4976
-        height: 2986
+        x: 130
+        y: 43
+        width: 580
+        height: 233
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae554548747f120c0800000000000000
-      internalID: -4602125457661078038
+      spriteID: 3f3968e164a70b5b0800000000000000
+      internalID: -5354645515365084173
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      IMG_0775_0: -4602125457661078038
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
