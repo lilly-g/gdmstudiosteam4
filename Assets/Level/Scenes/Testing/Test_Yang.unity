@@ -1305,7 +1305,7 @@ MonoBehaviour:
   delayAtEndOfLoad: 1
   levelSelector: {fileID: 1702561490}
   configMenu: {fileID: 481929016}
-  loadButton: {fileID: 0}
+  loadButton: {fileID: 1588495947}
 --- !u!1 &1279711971
 GameObject:
   m_ObjectHideFlags: 0
@@ -2227,6 +2227,11 @@ PrefabInstance:
       addedObject: {fileID: 2026624925158277781}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfa61560401420046b4fbd9da1c1145d, type: 3}
+--- !u!1 &1588495947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1938350000354371095, guid: 31051dc509f248e489bdf4c1f9b05895, type: 3}
+  m_PrefabInstance: {fileID: 332146161}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1643956211
 PrefabInstance:
   m_ObjectHideFlags: 0

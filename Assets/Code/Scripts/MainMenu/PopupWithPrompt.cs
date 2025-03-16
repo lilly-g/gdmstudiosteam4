@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public abstract class PopupWithPrompt : MonoBehaviour
 {
@@ -66,6 +67,7 @@ public abstract class PopupWithPrompt : MonoBehaviour
 
     // Canvas changer
     public void GoToCanvas(GameObject aCanvas) {
+        EventSystem.current.SetSelectedGameObject(null);
         gameObject.SetActive(false);
         aCanvas.SetActive(true);
     }

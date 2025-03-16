@@ -29,7 +29,7 @@ public class LevelControl : MonoBehaviour
         StartCoroutine(LoadNewScene(sceneIndex));
     }
 
-    IEnumerator LoadNewScene(int sceneIndex) {
+    private IEnumerator LoadNewScene(int sceneIndex) {
         if (currentScreen.GetComponent<CanvasGroup>() != null) {
             currentScreen.GetComponent<CanvasGroup>().alpha = 0f;
             currentScreen.GetComponent<CanvasGroup>().interactable = false;
@@ -54,6 +54,7 @@ public class LevelControl : MonoBehaviour
         }
 
         yield return new WaitForSeconds(delayAtEndOfLoad);
+        loadingBar.fillAmount = 0.0f;
         asyncLoad.allowSceneActivation = true;
     }
 

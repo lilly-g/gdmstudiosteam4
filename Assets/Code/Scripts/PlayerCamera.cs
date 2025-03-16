@@ -8,11 +8,6 @@ public class PlayerCamera : MonoBehaviour
     private Rigidbody2D player;
     private float currentHorizontalOffset;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (player == null)

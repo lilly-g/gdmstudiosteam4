@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class DisplayCard : MonoBehaviour
 {
-    [SerializeField] private GameObject playerWithCardHolder;
+    private GameObject playerWithCardHolder;
 
     private CardHolder cardHolder;
 

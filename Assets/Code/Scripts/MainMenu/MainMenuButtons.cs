@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,14 +10,16 @@ public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
     [SerializeField] private GameObject currentScreen;
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private Image loadingBar;
-    [SerializeField] private int delayAtEndOfLoad;
+    [SerializeField] private int delayAtEndOfLoad = 1;
     [SerializeField] private GameObject levelSelector;
     [SerializeField] private GameObject configMenu;
     [SerializeField] private GameObject loadButton;
 
     // PlayerPrefs
-    private string levelsCompletedString = "levelsCompleted";
+    private readonly string levelsCompletedString = "levelsCompleted";
     private int levelsCompletedInt;
+
+    private readonly string attemptsString = "attempts";
 
     // Checks
     private static bool newGamePressed = false;
@@ -37,12 +40,14 @@ public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
         SetNewGamePressed();
         PlayerPrefs.SetInt(levelsCompletedString, 0);
         levelsCompletedInt = PlayerPrefs.GetInt(levelsCompletedString);
+        EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(LoadNewScene(levelsCompletedInt + 1));
     }
 
     public override void NoAction()
     {
         SetNewGamePressed();
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     // Button methods
@@ -50,7 +55,7 @@ public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
         newGamePressed = true;
     }
 
-    IEnumerator LoadNewScene(int sceneIndex) {
+    private IEnumerator LoadNewScene(int sceneIndex) {
         if (currentScreen.GetComponent<CanvasGroup>() != null) {
             currentScreen.GetComponent<CanvasGroup>().alpha = 0f;
             currentScreen.GetComponent<CanvasGroup>().interactable = false;
@@ -69,12 +74,13 @@ public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
         // Smoothly animate 90%-100% over 1 second
         float timer = 0f;
         while (timer < 1f) {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             loadingBar.fillAmount = Mathf.Lerp(0.9f, 1.0f, timer);
             yield return null;
         }
 
-        yield return new WaitForSeconds(delayAtEndOfLoad);
+        yield return new WaitForSecondsRealtime(delayAtEndOfLoad);
+        loadingBar.fillAmount = 0.0f;
         asyncLoad.allowSceneActivation = true;
     }
 
@@ -93,7 +99,9 @@ public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
         }
         levelsCompletedInt = PlayerPrefs.GetInt(levelsCompletedString);
 
-        // if (levelsCompletedInt == 0) loadButton.SetActive(false);
+        if (levelsCompletedInt == 0) loadButton.SetActive(false);
+
+        PlayerPrefs.SetInt(attemptsString, 0);
     }
 
     void Update()
