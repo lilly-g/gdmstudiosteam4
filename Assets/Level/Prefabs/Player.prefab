@@ -357,7 +357,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 19.073353
+  m_Distance: 0.7433034
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!95 &4036830511256203032
@@ -411,6 +411,7 @@ MonoBehaviour:
   boxCastDistance: 1
   wallCheckSize: {x: 0.03, y: 1.5}
   wallCheckDistance: 0.6
+  _grounded: 0
   _platform: {fileID: 0}
   isWallSliding: 0
   isDashing: 0
@@ -613,7 +614,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.34257317
+        value: 0.28713036
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -625,8 +626,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.081940174, g: 0, b: 1, a: 1}
-      key1: {r: 0, g: 0.99471426, b: 1, a: 1}
+      key0: {r: 0.63308907, g: 0.6754716, b: 0, a: 1}
+      key1: {r: 1, g: 0.95652175, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

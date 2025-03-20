@@ -27,19 +27,24 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     private void UpdateAnimation(){
-        if (playerController.FrameInput.x == 0){
+        if (!playerController._grounded){
+            SetAnimation("MCJump");
+        }
+        else if (playerController.FrameInput.x == 0){
             SetAnimation("MCIdle");
         }
-        else if (playerController.FrameInput.x > 0 && !playerController.isWallSliding){
+        else if (!playerController.isWallSliding){
             SetAnimation("MCRun");
-            spriteRenderer.flipX = false;
-        }
-        else if (playerController.FrameInput.x < 0 && !playerController.isWallSliding){
-            SetAnimation("MCRun");
-            spriteRenderer.flipX = true;
         }
         else{
             SetAnimation("MCIdle");
+        }
+
+        if (playerController.FrameInput.x > 0){
+            spriteRenderer.flipX = false;
+        }
+        else if (playerController.FrameInput.x < 0){
+            spriteRenderer.flipX = true;
         }
     }
 

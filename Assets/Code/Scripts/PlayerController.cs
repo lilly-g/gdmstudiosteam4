@@ -96,7 +96,7 @@ using UnityEngine;
         private float _frameLeftGrounded = float.MinValue;
         private float _frameLeftGrapple = float.MinValue;
         private bool _jumping;
-        private bool _grounded;
+        [HideInInspector] public bool _grounded;
         [HideInInspector] public MovingPlatform _platform = null;
 
         bool wallHitLeft = false;
@@ -277,7 +277,7 @@ using UnityEngine;
         private void HandleGravity()
         {
             //if dashing, don't apply gravity
-            if (_time < frameDashed + _stats.DashTime)
+            if (_time < frameDashed + _stats.DashTime * 1.5f)
             {
                 _frameVelocity = Vector2.MoveTowards(_frameVelocity, Vector2.zero, _stats.DashDeceleration * Time.fixedDeltaTime);
             }
@@ -294,7 +294,7 @@ using UnityEngine;
             //if sliding on wall, apply wallslide force
             else if (isWallSliding)
             {
-                _frameVelocity.y = _stats.WallSlideForce;
+                _frameVelocity.y = 0;
             }
             //otherwise apply gravity
             else
@@ -338,6 +338,9 @@ using UnityEngine;
                 }
             }
 
+            //prevents additional downward force from being applied after grapple
+            _endedJumpEarly = false;
+
             //enables mid-air jump after releasing grapple
             _coyoteUsable = true;
             _frameLeftGrounded = _time;
@@ -347,6 +350,7 @@ using UnityEngine;
         {
             dashDirection = _frameInput.Move.normalized;
             _jumping = false;
+            _endedJumpEarly = false;
             isDashing = true;
             frameDashed = _time;
             _frameVelocity = dashDirection * _stats.DashSpeed;
