@@ -49,12 +49,6 @@ using UnityEngine;
         {
             _time += Time.deltaTime;
 
-            if (isDashing && _time >= frameDashed + _stats.DashTime)
-            {
-                isDashing = false;
-                EndDash();
-            }
-
             GatherInput();
         }
 
@@ -82,6 +76,12 @@ using UnityEngine;
 
         private void FixedUpdate()
         {
+            if (isDashing && _time >= frameDashed + _stats.DashTime)
+            {
+                isDashing = false;
+                EndDash();
+            }
+
             CheckCollisions();
 
             HandleJump();
