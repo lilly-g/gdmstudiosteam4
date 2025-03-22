@@ -72,6 +72,8 @@ using UnityEngine;
                 _jumpToConsume = true;
                 _timeJumpWasPressed = _time;
             }
+
+            updateDirection();
         }
 
         private void FixedUpdate()
@@ -80,6 +82,10 @@ using UnityEngine;
             {
                 isDashing = false;
                 EndDash();
+            }
+            else if (startedDash && _time >= frameDashed + _stats.DashBuffer){
+                startedDash = false;
+                Dash();
             }
 
             CheckCollisions();
@@ -97,6 +103,7 @@ using UnityEngine;
         private float _frameLeftGrapple = float.MinValue;
         private bool _jumping;
         [HideInInspector] public bool _grounded;
+        [HideInInspector] public bool facingRight = true;
         [HideInInspector] public MovingPlatform _platform = null;
 
         bool wallHitLeft = false;
@@ -312,6 +319,7 @@ using UnityEngine;
         private float frameDashed = float.MinValue;
         private Vector2 dashDirection;
         [HideInInspector] public bool isDashing;
+        [HideInInspector] public bool startedDash;
 
         //called once when grapple begins
         public void Grappled()
@@ -346,18 +354,38 @@ using UnityEngine;
             _frameLeftGrounded = _time;
         }
 
-        public void Dash()
+        public void StartDash()
         {
-            dashDirection = _frameInput.Move.normalized;
             _jumping = false;
             _endedJumpEarly = false;
+            isWallSliding = false;
+            startedDash = true;
+            frameDashed = _time;
+        }
+
+        public void Dash(){
             isDashing = true;
             frameDashed = _time;
+            if (_frameInput.Move.y <= 0){
+                dashDirection = new Vector2(facingRight ? 1 : -1, 0);
+            }
+            else{
+                dashDirection = _frameInput.Move.normalized;
+            }
             _frameVelocity = dashDirection * _stats.DashSpeed;
         }
 
         public void EndDash(){
             
+        }
+
+        public void updateDirection(){
+            if (FrameInput.x > 0){
+                facingRight = true;
+            }
+            else if (FrameInput.x < 0){
+                facingRight = false;
+            }
         }
 
         #endregion

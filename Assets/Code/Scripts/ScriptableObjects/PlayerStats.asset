@@ -43,3 +43,4 @@ MonoBehaviour:
   DashSpeed: 50
   DashDeceleration: 120
   DashTime: 0.2
+  DashBuffer: 0.05

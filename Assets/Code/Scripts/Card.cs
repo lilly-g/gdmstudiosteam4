@@ -79,11 +79,11 @@ public class DashCard : Card
     {
         Debug.Log("Dash Card Played!");
         base.Play(pObj);
-        pObj.GetComponent<PlayerController>().Dash();
+        pObj.GetComponent<PlayerController>().StartDash();
     }
 
     override public bool CanPlay(GameObject pObj)
     {
-        return (base.CanPlay(pObj) && new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) != Vector2.zero);
+        return (base.CanPlay(pObj));
     }
 }

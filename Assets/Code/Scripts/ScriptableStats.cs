@@ -83,4 +83,7 @@ using UnityEngine;
 
         [Tooltip("Amount of time player dashses for")]
         public float DashTime = .5f;
+
+        [Tooltip("Window of time player can change direction after dashing")]
+        public float DashBuffer = .1f;
     }

@@ -40,10 +40,10 @@ public class PlayerAnimation : MonoBehaviour
             SetAnimation("MCIdle");
         }
 
-        if (playerController.FrameInput.x > 0){
+        if (playerController.facingRight){
             spriteRenderer.flipX = false;
         }
-        else if (playerController.FrameInput.x < 0){
+        else{
             spriteRenderer.flipX = true;
         }
     }
