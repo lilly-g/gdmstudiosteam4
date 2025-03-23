@@ -43,6 +43,23 @@ public class GoalTrigger : MonoBehaviour
     // PlayerPrefs
     private readonly string levelsCompletedString = "levelsCompleted";
 
+    public GameObject levelLoaderCanvas;
+    public Animator reload;
+    private bool hasTransition;
+
+    void Start()
+    {
+        levelLoaderCanvas = GameObject.FindGameObjectWithTag("Transition");
+        if (levelLoaderCanvas != null){
+            reload = levelLoaderCanvas.GetComponent<Animator>();
+            hasTransition = true;
+        }
+        else {
+            Debug.Log("The levelloader is missing from the scene, will reload without transition");
+        }
+
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && other.GetType().ToString().Equals("UnityEngine.CapsuleCollider2D")) // Ensure the player has the correct tag
@@ -53,10 +70,38 @@ public class GoalTrigger : MonoBehaviour
                 levelsCompletedInt += 1;
                 PlayerPrefs.SetInt(levelsCompletedString, levelsCompletedInt);
             }
-            StartCoroutine(LoadSceneAsync());
+            if (hasTransition){
+                StartCoroutine(LoadSceneAsyncWithTransition());
+            }
+            else{
+                StartCoroutine(LoadSceneAsync());
+            }         
         }
     }
 
+    private IEnumerator LoadSceneAsyncWithTransition()
+    {
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            reload.SetTrigger("FadeIn");
+            yield return new WaitForSeconds(0.45f);
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneName);
+            asyncLoad.allowSceneActivation = false;
+            
+            while (!asyncLoad.isDone)
+            {
+                if (asyncLoad.progress >= 0.9f)
+                {
+                    asyncLoad.allowSceneActivation = true;
+                }
+                yield return null;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Next scene name is not set in the Inspector!");
+        }
+    }
     private IEnumerator LoadSceneAsync()
     {
         if (!string.IsNullOrEmpty(nextSceneName))
