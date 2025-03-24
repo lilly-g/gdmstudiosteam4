@@ -17793,6 +17793,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04644b3e098ff04419c67abb07465458, type: 3}
+--- !u!1 &247123169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 994173941154036610, guid: 82a7cf4a0e0d5de4a9d6d1ca2e23fe99, type: 3}
+  m_PrefabInstance: {fileID: 1276505532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &247123182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247123169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6173edbabd09f4179a2d434b3b4f93a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landEffectPrefab: {fileID: 0}
 --- !u!1 &328831484
 GameObject:
   m_ObjectHideFlags: 0
@@ -23986,7 +24004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530438649884274539, guid: 82a7cf4a0e0d5de4a9d6d1ca2e23fe99, type: 3}
       propertyPath: m_Distance
-      value: 5.6194005
+      value: 10.688779
       objectReference: {fileID: 0}
     - target: {fileID: 8081787222020842240, guid: 82a7cf4a0e0d5de4a9d6d1ca2e23fe99, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24031,7 +24049,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 994173941154036610, guid: 82a7cf4a0e0d5de4a9d6d1ca2e23fe99, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 247123182}
   m_SourcePrefab: {fileID: 100100000, guid: 82a7cf4a0e0d5de4a9d6d1ca2e23fe99, type: 3}
 --- !u!1 &1413665768
 GameObject:

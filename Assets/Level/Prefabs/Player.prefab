@@ -151,6 +151,8 @@ GameObject:
   - component: {fileID: 7284429443565873157}
   - component: {fileID: 7195964719415874985}
   - component: {fileID: 6362420336227304736}
+  - component: {fileID: 3598869272717390978}
+  - component: {fileID: -5137103282823323127}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -357,7 +359,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.7433034
+  m_Distance: 19.073353
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!95 &4036830511256203032
@@ -412,9 +414,11 @@ MonoBehaviour:
   wallCheckSize: {x: 0.03, y: 1.5}
   wallCheckDistance: 0.6
   _grounded: 0
+  facingRight: 1
   _platform: {fileID: 0}
   isWallSliding: 0
   isDashing: 0
+  startedDash: 0
 --- !u!114 &7195964719415874985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +445,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundHitParticlesPrefab: {fileID: 2176676020326173197, guid: 1782c7ba286794f6bbd190aefb82c619, type: 3}
+--- !u!114 &3598869272717390978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994173941154036610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a76395d8773b449f9b0236e008fbd31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundParticles: {fileID: 2176676020326173197, guid: 1782c7ba286794f6bbd190aefb82c619, type: 3}
+--- !u!114 &-5137103282823323127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994173941154036610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6173edbabd09f4179a2d434b3b4f93a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landEffectPrefab: {fileID: 3112758849225921653, guid: 53674c4424f8f4a0fa655f88a537f2e5, type: 3}
 --- !u!1 &5565916962676926377
 GameObject:
   m_ObjectHideFlags: 0

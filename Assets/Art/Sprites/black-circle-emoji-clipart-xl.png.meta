@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      black-circle-emoji-clipart-xl_0: 1673999921444622062
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
