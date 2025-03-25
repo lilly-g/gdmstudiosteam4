@@ -21,17 +21,17 @@ EditorBuildSettings:
     path: Assets/Level/Scenes/Testing/Levels_Demo4/Level4.unity
     guid: 07ab1b4d2deef4d818c166777c4dbf23
   - enabled: 1
-    path: Assets/Level/Scenes/Testing/Levels_Demo4/Level5.unity
+    path: Assets/Level/Scenes/Testing/Levels_Demo4/Level6.unity
     guid: c02f29ac326785f48849ff59c267b7e2
   - enabled: 1
-    path: Assets/Level/Scenes/Testing/Levels_Demo4/Level6.unity
+    path: Assets/Level/Scenes/Testing/Levels_Demo4/Level7.unity
     guid: a4adadc108512d14f8850565fea05ccf
   - enabled: 1
-    path: Assets/Level/Scenes/Testing/Levels_Demo4/Level7.unity
-    guid: 9b22964312b2364488c3978e44522d1c
-  - enabled: 1
     path: Assets/Level/Scenes/Testing/Levels_Demo4/Level8.unity
-    guid: 957e914b35065d54f86a95f65ca402df
+    guid: 9b22964312b2364488c3978e44522d1c
+  - enabled: 0
+    path: Assets/Level/Scenes/Testing/Levels_Demo4/Level8.unity
+    guid: 9b22964312b2364488c3978e44522d1c
   - enabled: 1
     path: Assets/Level/Scenes/Testing/Levels_Demo4/Level8.1.unity
     guid: 95975cbff8b9f8f47b2edc34de1583b4
@@ -39,20 +39,26 @@ EditorBuildSettings:
     path: Assets/Level/Scenes/Testing/Levels_Demo4/Level9.unity
     guid: 9432c7334f41a410bbaf64be83bd6550
   - enabled: 1
-    path: Assets/Level/Scenes/Testing/Levels_Demo4/Level10.unity
+    path: Assets/Level/Scenes/Testing/Levels_Demo4/Level12.unity
     guid: a9449331f301ce9459a173a916e9643b
   - enabled: 1
     path: Assets/Level/Scenes/Testing/Levels_Demo4/Level11.unity
-    guid: 308172fbd0da9d34dade5efea2ec197b
+    guid: 3c1de92dfcba13640970ce34c0e5e667
   - enabled: 1
     path: Assets/Level/Scenes/Testing/Levels_Demo4/Level12.unity
-    guid: d92a7236dd947964cb5ae591f9489f47
+    guid: a9449331f301ce9459a173a916e9643b
   - enabled: 1
     path: Assets/Level/Scenes/Testing/Levels_Demo4/Level13.unity
     guid: acaa90e7d1f69b44186c48100ba0391f
   - enabled: 1
     path: Assets/Level/Scenes/Testing/Levels_Demo4/Level14.unity
     guid: 697ac693799caf04f8c9da9338bd86c0
+  - enabled: 1
+    path: Assets/Level/Scenes/Testing/Levels_Demo4/Level5.unity
+    guid: 3588c0b25f38b134c97b31d887c79f5d
+  - enabled: 1
+    path: Assets/Level/Scenes/Testing/Levels_Demo4/Level10.unity
+    guid: c066351365d6d3d4a96ff44491b9e2e1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
