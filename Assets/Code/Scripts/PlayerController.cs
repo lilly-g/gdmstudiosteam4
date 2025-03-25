@@ -17,7 +17,6 @@ using UnityEngine;
         [SerializeField] private Vector2 wallCheckSize = new Vector2(0.03f, 1.5f);
         [SerializeField] private float wallCheckDistance = .5f;
 
-
         #region Interface
 
         public Vector2 FrameInput => _frameInput.Move;
@@ -126,7 +125,7 @@ using UnityEngine;
             if (ceilingHit && !_grounded) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
 
             //Sliding on Wall
-            bufferWallSliding = (((wallHitLeft && _frameInput.Move.x == -1) || (wallHitRight && _frameInput.Move.x == 1)) && !_grounded && _frameVelocity.y < 0);
+            bufferWallSliding = (((wallHitLeft && _frameInput.Move.x == -1) || (wallHitRight && _frameInput.Move.x == 1)) && !_grounded && _frameVelocity.y <= 0);
 
             if (!isWallSliding && bufferWallSliding)
             {
@@ -301,7 +300,7 @@ using UnityEngine;
             //if sliding on wall, apply wallslide force
             else if (isWallSliding)
             {
-                _frameVelocity.y = 0;
+                _frameVelocity.y = -.25f;
             }
             //otherwise apply gravity
             else
@@ -366,7 +365,7 @@ using UnityEngine;
         public void Dash(){
             isDashing = true;
             frameDashed = _time;
-            if (_frameInput.Move.y <= 0){
+            if (_frameInput.Move.y == 0){
                 dashDirection = new Vector2(facingRight ? 1 : -1, 0);
             }
             else{

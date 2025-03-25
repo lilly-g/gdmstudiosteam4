@@ -8,8 +8,6 @@ public class GroundImpactParticles : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("Collided with ground!");
-
             if (groundParticles != null)
             {
                 // Move particle system to collision point
