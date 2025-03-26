@@ -11712,6 +11712,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelPrefabs
       objectReference: {fileID: 0}
+    - target: {fileID: 3766665642479210259, guid: 5b3cfac70eb0f2a46a5c904e3c9a48d7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766665642479210259, guid: 5b3cfac70eb0f2a46a5c904e3c9a48d7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766665642479210259, guid: 5b3cfac70eb0f2a46a5c904e3c9a48d7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.85
+      objectReference: {fileID: 0}
     - target: {fileID: 7376030769043942844, guid: 5b3cfac70eb0f2a46a5c904e3c9a48d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
