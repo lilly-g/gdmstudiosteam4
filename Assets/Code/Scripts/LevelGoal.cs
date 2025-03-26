@@ -43,8 +43,8 @@ public class GoalTrigger : MonoBehaviour
     // PlayerPrefs
     private readonly string levelsCompletedString = "levelsCompleted";
 
-    public GameObject levelLoaderCanvas;
-    public Animator reload;
+    [HideInInspector] public GameObject levelLoaderCanvas;
+    [HideInInspector] public Animator reload;
     private bool hasTransition;
 
     void Start()
