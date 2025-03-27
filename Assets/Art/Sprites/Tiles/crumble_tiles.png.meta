@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      crumble_tiles_0: -5523162042198757159
+      crumble_tiles_1: 5803828651743609299
+      crumble_tiles_2: -7601775865346156582
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
