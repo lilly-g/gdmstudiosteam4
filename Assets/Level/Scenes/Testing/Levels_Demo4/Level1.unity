@@ -6468,8 +6468,8 @@ MonoBehaviour:
   audioSource4: {fileID: 2026265880}
   audioSource5: {fileID: 376732855}
   layer1: {fileID: 8300000, guid: 1404b12ca10e5f249819f218be3ccf3e, type: 3}
-  layer2: {fileID: 8300000, guid: 988f4a8558e3a1b449c603ac1a8449d7, type: 3}
-  layer3: {fileID: 8300000, guid: 94599a5926ab81a46a3c4fb7ddfacbd0, type: 3}
+  layer2: {fileID: 0}
+  layer3: {fileID: 0}
   layer4: {fileID: 0}
   layer5: {fileID: 0}
 --- !u!4 &685513019
