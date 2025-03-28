@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework.Internal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +9,7 @@ public class LevelControl : MonoBehaviour
     [SerializeField] private List<GameObject> levelGameObjects;
     [SerializeField] private List<GameObject> levelMapGameObjects;
     [SerializeField] private GameObject currentScreen;
+    [SerializeField] private List<Sprite> backgroundImages;
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private Image loadingBar;
     [SerializeField] private int delayAtEndOfLoad;
@@ -85,20 +84,24 @@ public class LevelControl : MonoBehaviour
         }
 
         currentMapPage = levelsCompletedInt / LEVELS_PER_MAP;
-        levelMapGameObjects[currentMapPage].SetActive(true);
+        for (int i = 0; i < levelMapGameObjects.Count; i++) {
+            levelMapGameObjects[i].SetActive(i == currentMapPage);
+        }
+        currentScreen.GetComponent<Image>().sprite = backgroundImages[currentMapPage];
     }
 
     public void goRight() {
         currentMapPage += 1;
         levelMapGameObjects[currentMapPage].SetActive(true);
         levelMapGameObjects[currentMapPage - 1].SetActive(false);
+        currentScreen.GetComponent<Image>().sprite = backgroundImages[currentMapPage];
     }
     
     public void goLeft() {
         currentMapPage -= 1;
         levelMapGameObjects[currentMapPage].SetActive(true);
         levelMapGameObjects[currentMapPage + 1].SetActive(false);
-
+        currentScreen.GetComponent<Image>().sprite = backgroundImages[currentMapPage];
     }
     void OnEnable()
     {
