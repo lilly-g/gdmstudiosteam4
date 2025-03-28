@@ -13,6 +13,7 @@ public class DisplayCard : MonoBehaviour
 
     [SerializeField] private Sprite grappleSprite;
     [SerializeField] private Sprite dashSprite;
+    [SerializeField] private Sprite defaultSprite;
 
     [SerializeField] private Image currCard;
     [SerializeField] private Image nextCard;
@@ -58,12 +59,12 @@ public class DisplayCard : MonoBehaviour
         switch (cardList.Count) 
         {
             case 0:
-                currCard.sprite = null;
-                nextCard.sprite = null;
+                currCard.sprite = defaultSprite;
+                nextCard.sprite = defaultSprite;
                 break;
             case 1:
                 currCard.sprite = getSpritebyCard(cardList[0]);
-                nextCard.sprite = null;
+                nextCard.sprite = defaultSprite;
                 break;
             default:
                 currCard.sprite = getSpritebyCard(cardList[0]);
@@ -85,6 +86,6 @@ public class DisplayCard : MonoBehaviour
                 return dashSprite;
             }
         }
-        return null;
+        return defaultSprite;
     }
 }

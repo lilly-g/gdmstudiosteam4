@@ -1019,8 +1019,8 @@ MonoBehaviour:
   currentScreen: {fileID: 1702561490}
   backgroundImages:
   - {fileID: -7944938839494581094, guid: f0834775a2c12c6469bf1f0d7f82f1b1, type: 3}
-  - {fileID: 2480003427126824095, guid: 180e620030750c24e90d24c2cc5cf61e, type: 3}
   - {fileID: -4568732809202206518, guid: d25d988af3a26fb41a03cdccde577a7c, type: 3}
+  - {fileID: 2480003427126824095, guid: 180e620030750c24e90d24c2cc5cf61e, type: 3}
   loadingScreen: {fileID: 1219452377}
   loadingBar: {fileID: 1878252703}
   delayAtEndOfLoad: 1
@@ -1354,7 +1354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1247916855
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1741,7 +1741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8729849855577367981, guid: 31051dc509f248e489bdf4c1f9b05895, type: 3}
       propertyPath: m_text
-      value: 'CONFIG
+      value: 'STORY LOG
 
 
 '
@@ -2879,7 +2879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1682462296
 RectTransform:
   m_ObjectHideFlags: 0
