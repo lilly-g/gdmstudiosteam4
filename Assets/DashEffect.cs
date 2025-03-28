@@ -22,8 +22,9 @@ public class DashEffect : MonoBehaviour
 
         if (isDashing)
         {
-            if (!wasDashingLastFrame && dashEffect != null && !dashEffect.isPlaying)
+            if (!wasDashingLastFrame && dashEffect != null)
             {
+                dashEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
                 dashEffect.Play();
             }
         }
