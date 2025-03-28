@@ -19589,6 +19589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelPrefabs
       objectReference: {fileID: 0}
+    - target: {fileID: 4968463844236555185, guid: 5b3cfac70eb0f2a46a5c904e3c9a48d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7376030769043942844, guid: 5b3cfac70eb0f2a46a5c904e3c9a48d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -19627,6 +19631,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7376030769043942844, guid: 5b3cfac70eb0f2a46a5c904e3c9a48d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218374223636858507, guid: 5b3cfac70eb0f2a46a5c904e3c9a48d7, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
