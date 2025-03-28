@@ -9,7 +9,7 @@ using UnityEngine;
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
-        private Vector2 _frameVelocity;
+        [HideInInspector] public Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
 
         [SerializeField] private Vector2 boxSize = new Vector2(1.35f, 0.03f);
@@ -77,6 +77,8 @@ using UnityEngine;
 
         private void FixedUpdate()
         {
+            justHitGround = false;
+
             if (isDashing && _time >= frameDashed + _stats.DashTime)
             {
                 isDashing = false;
@@ -109,6 +111,9 @@ using UnityEngine;
         bool wallHitRight = false;
         bool bufferWallSliding = false;
         public bool isWallSliding = false;
+        public bool groundHit = false;
+        public bool ceilingHit = false;
+        public bool justHitGround = false;
         float _frameLeftWall = float.MinValue;
 
         private void CheckCollisions()
@@ -116,8 +121,8 @@ using UnityEngine;
             Physics2D.queriesStartInColliders = false;
 
             // Ground, Ceiling, and Walls
-            bool groundHit = Physics2D.BoxCast(transform.position, new Vector2(boxSize.x, _stats.GrounderDistance), 0, -transform.up, boxCastDistance, _stats.GroundLayer);
-            bool ceilingHit = Physics2D.BoxCast(transform.position, new Vector2(boxSize.x, _stats.GrounderDistance), 0, transform.up, boxCastDistance, _stats.GroundLayer);
+            groundHit = Physics2D.BoxCast(transform.position, new Vector2(boxSize.x, _stats.GrounderDistance), 0, -transform.up, boxCastDistance, _stats.GroundLayer);
+            ceilingHit = Physics2D.BoxCast(transform.position, new Vector2(boxSize.x, _stats.GrounderDistance), 0, transform.up, boxCastDistance, _stats.GroundLayer);
             wallHitLeft = Physics2D.BoxCast(transform.position, wallCheckSize, 0, -transform.right, wallCheckDistance, _stats.ClimbableLayer);
             wallHitRight = Physics2D.BoxCast(transform.position, wallCheckSize, 0, transform.right, wallCheckDistance, _stats.ClimbableLayer);
 
@@ -143,6 +148,7 @@ using UnityEngine;
             // Landed on the Ground
             if (!_grounded && groundHit)
             {
+                justHitGround = true;
                 _grounded = true;
                 _coyoteUsable = true;
                 _bufferedJumpUsable = true;
