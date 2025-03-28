@@ -42,12 +42,14 @@ public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
         levelsCompletedInt = PlayerPrefs.GetInt(levelsCompletedString);
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(LoadNewScene(levelsCompletedInt + 1));
+        base.YesAction();
     }
 
     public override void NoAction()
     {
         SetNewGamePressed();
         EventSystem.current.SetSelectedGameObject(null);
+        base.NoAction();
     }
 
     // Button methods

@@ -11,14 +11,14 @@ public class QuitGame : PopupWithPrompt
     } 
 
     // Setters
-    public static void SetQuitStatus() {
-        quitPopupToggled = false;
+    public static void SetQuitStatus(bool boolean) {
+        quitPopupToggled = boolean;
     }
 
     // Update is called once per frame
     void Update() { 
         if (Input.GetKeyUp(KeyCode.Escape) && gameObject.CompareTag("Mainmenu")) {
-            quitPopupToggled = true;
+            SetQuitStatus(true);
         }       
 
         setToggle(quitPopupToggled);
@@ -37,10 +37,13 @@ public class QuitGame : PopupWithPrompt
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #endif
+
+        base.YesAction();
     }
 
     public override void NoAction()
     {
-        SetQuitStatus();
+        SetQuitStatus(false);
+        base.NoAction();
     }
 }

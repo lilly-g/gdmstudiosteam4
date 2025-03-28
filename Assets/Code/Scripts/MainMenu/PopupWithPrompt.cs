@@ -11,8 +11,14 @@ public abstract class PopupWithPrompt : MonoBehaviour
     private bool yesKey;
     private bool noKey;
 
-    public abstract void YesAction();
-    public abstract void NoAction();
+    public virtual void YesAction() {
+        yesKey = false; // Reset after use
+        active = false;   // Close after confirmation
+    }
+    public virtual void NoAction() {
+        noKey = false;
+        active = false;
+    }
 
     // Setters
     public void setToggle(bool toggle) {
@@ -52,15 +58,11 @@ public abstract class PopupWithPrompt : MonoBehaviour
         if (active) {
             if (yesKey) {
                 YesAction();
-                yesKey = false; // Reset after use
-                active = false;   // Close after confirmation
             }
 
             if (noKey) {
                 Debug.Log("Popup operation cancelled!");
                 NoAction();
-                noKey = false;
-                active = false;
             }
         }
     }
