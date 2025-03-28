@@ -14,6 +14,15 @@ public class AudioManager : MonoBehaviour
     public AudioClip layer3;
     public AudioClip layer4;
     public AudioClip layer5;
+
+    public AudioManager manager;
+
+    // Music remains persistent between levels 
+    // (This obviously does not work if the player does not start at level 1. Needs to be fixed)
+    void Awake(){
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start(){
         // How do I play the music only when there is something placed in the variable?

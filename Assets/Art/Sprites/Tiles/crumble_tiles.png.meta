@@ -43,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -57,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -111,15 +111,20 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 48
-        width: 48
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: 8, y: 6}
+        - {x: -5, y: 6}
+        - {x: -5, y: -4}
+        - {x: -2, y: -4}
+        - {x: 8, y: -4}
+      tessellationDetail: 0
       bones: []
       spriteID: 9d072d5b269c953b0800000000000000
       internalID: -5523162042198757159
@@ -131,17 +136,23 @@ TextureImporter:
       name: crumble_tiles_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 16
+        y: 48
         width: 16
-        height: 48
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: 8, y: 6}
+        - {x: 1, y: 6}
+        - {x: -8, y: 6}
+        - {x: -8, y: -4}
+        - {x: -2, y: -4}
+        - {x: 8, y: -4}
+      tessellationDetail: 0
       bones: []
       spriteID: 3d18964a8675b8050800000000000000
       internalID: 5803828651743609299
@@ -153,20 +164,133 @@ TextureImporter:
       name: crumble_tiles_2
       rect:
         serializedVersion: 2
-        x: 31
-        y: 16
-        width: 17
+        x: 32
+        y: 48
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: 6, y: -4}
+        - {x: 6, y: 6}
+        - {x: -1, y: 6}
+        - {x: -8, y: 6}
+        - {x: -8, y: -4}
+        - {x: -1, y: -4}
+      tessellationDetail: 0
       bones: []
       spriteID: ad797eb5021118690800000000000000
       internalID: -7601775865346156582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crumble_tiles_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 6, y: 6}
+        - {x: -5, y: 6}
+        - {x: -5, y: -8}
+        - {x: 6, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 055d80d8c5cddd24aa5b9b092f95bff2
+      internalID: 1655646220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crumble_tiles_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 6, y: -1}
+        - {x: 6, y: 8}
+        - {x: -5, y: 8}
+        - {x: -5, y: -8}
+        - {x: 6, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 861f8f70680007c49aa1dc37b43e6bd9
+      internalID: -1704751208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crumble_tiles_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 6, y: -5}
+        - {x: 6, y: 6}
+        - {x: -6, y: 6}
+        - {x: -6, y: -5}
+        - {x: 0, y: -5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33a8b34288531464f9810c860301e373
+      internalID: 851831980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crumble_tiles_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 6, y: -5}
+        - {x: 6, y: 8}
+        - {x: -5, y: 8}
+        - {x: -5, y: -5}
+        - {x: 0, y: -5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a99f1f75f29e0784b8458d895fc3d94a
+      internalID: -1813387425
       vertices: []
       indices: 
       edges: []
@@ -175,7 +299,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3003966266ca65d4081d19dd4b6367ae
     internalID: 0
     vertices: []
     indices: 
@@ -188,6 +312,10 @@ TextureImporter:
       crumble_tiles_0: -5523162042198757159
       crumble_tiles_1: 5803828651743609299
       crumble_tiles_2: -7601775865346156582
+      crumble_tiles_3: 1655646220
+      crumble_tiles_4: -1704751208
+      crumble_tiles_5: 851831980
+      crumble_tiles_6: -1813387425
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

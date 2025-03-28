@@ -24,7 +24,7 @@ public class Background : MonoBehaviour
             foreground.transform.position = new Vector3(mainCamera.transform.position.x, (mainCamera.transform.position.y * foreParallax) - foreOffset, 0);
         }
         if (foreBelow != null){
-            foreBelow.transform.position = new Vector3(mainCamera.transform.position.x, Mathf.Min(foreBelowOffset, mainCamera.transform.position.y), 0);
+            foreBelow.transform.position = new Vector3(mainCamera.transform.position.x, (mainCamera.transform.position.y * foreParallax) - foreBelowOffset, 0);
         }
         if (background != null){
             background.transform.position = new Vector3(mainCamera.transform.position.x, Mathf.Min(mainCamera.transform.position.y, mainCamera.transform.position.y * backParallax), 0);

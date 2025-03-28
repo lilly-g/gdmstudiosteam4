@@ -31317,7 +31317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &325288931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31340,6 +31340,7 @@ MonoBehaviour:
   layer3: {fileID: 8300000, guid: 94599a5926ab81a46a3c4fb7ddfacbd0, type: 3}
   layer4: {fileID: 0}
   layer5: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!4 &325288932
 Transform:
   m_ObjectHideFlags: 0

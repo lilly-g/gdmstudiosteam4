@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -4
   m_Sprite: {fileID: 3818198048552655587, guid: 5861e318bf100284fbb142c01e807932, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -249,7 +249,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: -6276448777861589338, guid: a7665b3ffb097c74dadaa9e9e30746a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -336,7 +336,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_Sprite: {fileID: -96595509090442131, guid: c028001773dfe464e8c1b5256492ddfd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -400,7 +400,7 @@ MonoBehaviour:
   background: {fileID: 6181873787221404807}
   foreground: {fileID: 4575070869097484857}
   foreBelow: {fileID: 5817236787737468533}
-  foreOffset: -3.4
-  foreBelowOffset: -95
+  foreOffset: 3.4
+  foreBelowOffset: 100
   foreParallax: 0.5
   backParallax: 0.75
