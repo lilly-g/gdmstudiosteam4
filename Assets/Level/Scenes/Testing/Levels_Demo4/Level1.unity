@@ -6376,6 +6376,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5137103282823323127, guid: 82a7cf4a0e0d5de4a9d6d1ca2e23fe99, type: 3}
+      propertyPath: particleSystem
+      value: 
+      objectReference: {fileID: 1378123049}
     - target: {fileID: 994173941154036610, guid: 82a7cf4a0e0d5de4a9d6d1ca2e23fe99, type: 3}
       propertyPath: m_Name
       value: Player
@@ -6386,7 +6390,7 @@ PrefabInstance:
       objectReference: {fileID: 2176676020241332726}
     - target: {fileID: 6530438649884274539, guid: 82a7cf4a0e0d5de4a9d6d1ca2e23fe99, type: 3}
       propertyPath: m_Distance
-      value: 13.100442
+      value: 29.316196
       objectReference: {fileID: 0}
     - target: {fileID: 8081787222020842240, guid: 82a7cf4a0e0d5de4a9d6d1ca2e23fe99, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6472,6 +6476,7 @@ MonoBehaviour:
   layer3: {fileID: 0}
   layer4: {fileID: 0}
   layer5: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!4 &685513019
 Transform:
   m_ObjectHideFlags: 0
@@ -12215,6 +12220,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b3cfac70eb0f2a46a5c904e3c9a48d7, type: 3}
+--- !u!198 &1378123049 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4138828765827029169, guid: 82a7cf4a0e0d5de4a9d6d1ca2e23fe99, type: 3}
+  m_PrefabInstance: {fileID: 403711861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1474440103
 PrefabInstance:
   m_ObjectHideFlags: 0

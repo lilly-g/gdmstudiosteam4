@@ -2,28 +2,33 @@ using UnityEngine;
 
 public class PlayerParticleEffect : MonoBehaviour
 {
-    [SerializeField] private GameObject landEffectPrefab;  // Reference to the particle system prefab
-    private bool _grounded;
+    [SerializeField] private ParticleSystem particleSystem;
 
-    // If you have a method to detect landing (e.g., OnCollisionEnter2D or OnTriggerStay2D)
-    private void OnCollisionEnter2D(Collision2D collision)
+    private PlayerController playerController;
+    private bool wasGrapplingLastFrame = false;
+    
+    void Start()
     {
-        if (collision.gameObject.CompareTag("Ground") && !_grounded)
-        {
-            // Set grounded to true to avoid multiple instantiations
-            _grounded = true;
-
-            // Instantiate the particle system at the player's position
-            Instantiate(landEffectPrefab, transform.position, Quaternion.identity);
-        }
+        playerController = GetComponent<PlayerController>();
+        particleSystem.Stop();
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    void Update()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (playerController == null || particleSystem == null) return;
+
+        if (playerController._grapple.grappleRope.isGrappling)
         {
-            // Player is no longer grounded
-            _grounded = false;
+            if (!wasGrapplingLastFrame){
+                particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                particleSystem.Play();
+            }
         }
+        else if (wasGrapplingLastFrame && particleSystem.isPlaying)
+        {
+            particleSystem.Stop();
+        }
+
+        wasGrapplingLastFrame = playerController._grapple.grappleRope.isGrappling;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
     public class PlayerController : MonoBehaviour, IPlayerController
     {
         [SerializeField] private ScriptableStats _stats;
-        private GrapplingGun _grapple;
+        [HideInInspector] public GrapplingGun _grapple;
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
