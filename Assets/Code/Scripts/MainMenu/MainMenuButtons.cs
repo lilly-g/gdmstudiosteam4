@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,7 @@ public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
     [SerializeField] private int delayAtEndOfLoad = 1;
     [SerializeField] private GameObject levelSelector;
     [SerializeField] private GameObject configMenu;
+    [SerializeField] private GameObject tutorialMenu;
     [SerializeField] private GameObject loadButton;
 
     // PlayerPrefs
@@ -100,6 +102,10 @@ public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
 
     public void GoToConfigMenu() {
         GoToCanvas(configMenu);
+    }
+
+    public void GoToTutorialMenu() {
+        GoToCanvas(tutorialMenu);
     }
 
     void OnEnable()
