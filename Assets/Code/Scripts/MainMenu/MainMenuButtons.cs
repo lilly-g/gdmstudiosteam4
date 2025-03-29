@@ -19,7 +19,12 @@ public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
     private readonly string levelsCompletedString = "levelsCompleted";
     private int levelsCompletedInt;
 
+    private readonly string collectiblesCollectedString = "collectiblesCollected";
+    private int collectiblesCollectedInt;
+
     private readonly string attemptsString = "attempts";
+
+    private readonly string collectibleForLevelString = "collectibleForLevel";
 
     // Checks
     private static bool newGamePressed = false;
@@ -38,8 +43,11 @@ public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
     public override void YesAction()
     {
         SetNewGamePressed();
+        // Reset completed levels
         PlayerPrefs.SetInt(levelsCompletedString, 0);
         levelsCompletedInt = PlayerPrefs.GetInt(levelsCompletedString);
+        // Reset collectibles
+        PlayerPrefs.SetInt(collectiblesCollectedString, 10);
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(LoadNewScene(levelsCompletedInt + 1));
         base.YesAction();
@@ -104,6 +112,17 @@ public class MainMenuButtons : PopupWithPrompt // Inherits popups and GoToCanvas
         if (levelsCompletedInt == 0) loadButton.SetActive(false);
 
         PlayerPrefs.SetInt(attemptsString, 0);
+
+        if (!PlayerPrefs.HasKey(collectiblesCollectedString)) {
+            PlayerPrefs.SetInt(collectiblesCollectedString, 10);
+        }
+        collectiblesCollectedInt = PlayerPrefs.GetInt(collectiblesCollectedString);
+
+        for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++) {
+            if (!PlayerPrefs.HasKey(collectibleForLevelString + i)) {
+                PlayerPrefs.SetInt(collectibleForLevelString + i, 0);
+            }
+        }
     }
 
     void Update()
