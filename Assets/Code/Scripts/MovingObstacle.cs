@@ -5,6 +5,7 @@ public class MovingObstacle : MonoBehaviour
 {
     [SerializeField] private Transform Left, Right;
     [SerializeField] private float speed;
+    [SerializeField] private float acceleration;
     [SerializeField] private float waitTime;
     [SerializeField] private float radius;
     [SerializeField] private bool circleMove;
@@ -26,18 +27,18 @@ public class MovingObstacle : MonoBehaviour
             transform.localPosition = new Vector3(Mathf.Sin(currentAngle), Mathf.Cos(currentAngle), 0) * radius;
         }
         else{
-            if ((Vector2.Distance(transform.position, Left.position) < .1f) && direction == -speed) {
+            if (transform.position.x <= Left.position.x && direction == -speed) {
                 direction = 0f;
                 IEnumerator changeDir = ChangeDirection(speed);
                 StartCoroutine(changeDir);
             }
-            else if ((Vector2.Distance(transform.position, Right.position) < .1f) && direction == speed) {
+            else if (transform.position.x >= Right.position.x && direction == speed) {
                 direction = 0f;
                 IEnumerator changeDir = ChangeDirection(-speed);
                 StartCoroutine(changeDir);
             }
         
-            _rb.linearVelocity = new Vector2 (direction, _rb.linearVelocity.y);
+            _rb.linearVelocity = new Vector2 (Mathf.MoveTowards(_rb.linearVelocity.x, direction, acceleration * Time.fixedDeltaTime), _rb.linearVelocity.y);
         }
     }
 

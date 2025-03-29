@@ -1,19 +1,31 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-
-    [SerializeField] private AudioSource audioSource1;
-    [SerializeField] private AudioSource audioSource2;
-    [SerializeField] private AudioSource audioSource3;
-    [SerializeField] private AudioSource audioSource4;
-    [SerializeField] private AudioSource audioSource5;
+    [SerializeField] private AudioSource MusicMenu;
+    [SerializeField] private AudioSource MusicLayer1;
+    [SerializeField] private AudioSource MusicLayer2;
+    [SerializeField] private AudioSource MusicLayer3;
+    [SerializeField] private AudioSource AbilityPickup;
+    [SerializeField] private AudioSource Death;
+    [SerializeField] private AudioSource Footsteps;
+    [SerializeField] private AudioSource Grapple;
+    [SerializeField] private AudioSource Jump;
+    [SerializeField] private AudioSource Dash;
 
     public AudioClip layer1;
     public AudioClip layer2;
     public AudioClip layer3;
     public AudioClip layer4;
     public AudioClip layer5;
+
+    public AudioClip footsteps1;
+    public AudioClip footsteps2;
+    public AudioClip footsteps3;
+
+    private Scene currentScene;
+    private AudioClip musicToPlay;
 
     public AudioManager manager;
 
@@ -25,41 +37,68 @@ public class AudioManager : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start(){
-        // How do I play the music only when there is something placed in the variable?
-        if (layer1 != null){
-            audioSource1.clip = layer1;
-            audioSource1.Play();
-            audioSource1.loop = true;
-        }
-        if (layer2 != null){
-            audioSource2.clip = layer2;
-            audioSource2.Play();
-            audioSource2.loop = true;
-        }
-        if (layer3 != null){
-            audioSource3.clip = layer3;
-            audioSource3.Play();
-            audioSource3.loop = true;
-
-        }
-        if (layer4 != null)
-        {
-            audioSource4.clip = layer4;
-            audioSource4.Play();
-            audioSource4.loop = true;
-        }
-        if (layer5 != null)
-        {
-            audioSource5.clip = layer5;
-            audioSource5.Play();
-            audioSource5.loop = true;
-        }
-        
+        MusicLayer1.clip = layer1;
+        MusicLayer1.Play();
+        MusicLayer1.loop = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+        if (currentScene != SceneManager.GetActiveScene()){
+            currentScene = SceneManager.GetActiveScene();
+            
+            if (currentScene.buildIndex == 0){
+                musicToPlay = layer1;
+            }
+            else if (currentScene.buildIndex < 6){
+                musicToPlay = layer2;
+            }
+            else if (currentScene.buildIndex < 12){
+                musicToPlay = layer3;
+            }
+            else{
+                musicToPlay = layer4;
+            }
+
+            if (musicToPlay != MusicLayer1.clip){
+                MusicLayer1.clip = musicToPlay;
+                MusicLayer1.Play();
+                MusicLayer1.loop = true;
+            }   
+        }
+    }
+
+    public void playAbility(){
+        AbilityPickup.Play();
+    }
+
+    public void playDeath(){
+        Death.Play();
+    }
+
+    public void playFootsteps(){
+        if (!Footsteps.isPlaying){
+            if (Footsteps.clip == footsteps1){
+                Footsteps.clip = footsteps2;
+            }
+            else if (Footsteps.clip == footsteps2){
+                Footsteps.clip = footsteps3;
+            }
+            else{
+                Footsteps.clip = footsteps1;
+            }
+            Footsteps.Play();
+        }
+    }
+
+    public void playGrapple(){
+        Grapple.Play();
+    }
+
+    public void playJump(){
+        Jump.Play();
+    }
+
+    public void playDash(){
+        Dash.Play();
     }
 }

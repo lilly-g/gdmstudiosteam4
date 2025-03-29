@@ -11,6 +11,7 @@ TagManager:
   - Collectable
   - Mainmenu
   - Transition
+  - Audio Manager
   layers:
   - Default
   - TransparentFX

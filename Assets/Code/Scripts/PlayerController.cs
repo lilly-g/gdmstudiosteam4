@@ -7,6 +7,7 @@ using UnityEngine;
         [SerializeField] private ScriptableStats _stats;
         [HideInInspector] public GrapplingGun _grapple;
         private Rigidbody2D _rb;
+        private AudioManager audioManager;
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
         [HideInInspector] public Vector2 _frameVelocity;
@@ -37,6 +38,7 @@ using UnityEngine;
 
         private void Awake()
         {
+            audioManager = GameObject.FindWithTag("Audio Manager").GetComponent<AudioManager>();
             _grapple = GetComponentInChildren<GrapplingGun>();
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<CapsuleCollider2D>();
@@ -96,6 +98,10 @@ using UnityEngine;
             HandleGravity();
             
             ApplyMovement();
+
+            if (FrameInput.x != 0 && _grounded){
+                audioManager.playFootsteps();
+            }
         }
 
         #region Collisions
@@ -204,6 +210,7 @@ using UnityEngine;
 
         private void ExecuteJump()
         {
+            audioManager.playJump();
             SetJump();
             _frameVelocity.y = (_time < _frameLeftGrapple + _stats.BoostJumpWindow) ? _stats.BoostJumpPower : _stats.JumpPower;
             Jumped?.Invoke();
@@ -211,6 +218,7 @@ using UnityEngine;
 
         private void ExecuteWallJump()
         {
+            audioManager.playJump();
             SetJump();
             isWallSliding = false;
 
@@ -329,6 +337,7 @@ using UnityEngine;
         //called once when grapple begins
         public void Grappled()
         {
+            audioManager.playGrapple();
             _jumping = false;
         }
 
@@ -361,6 +370,7 @@ using UnityEngine;
 
         public void StartDash()
         {
+            audioManager.playDash();
             _jumping = false;
             _endedJumpEarly = false;
             isWallSliding = false;
