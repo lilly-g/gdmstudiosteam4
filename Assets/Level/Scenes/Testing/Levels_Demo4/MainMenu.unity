@@ -6816,7 +6816,7 @@ MonoBehaviour:
     BUTTON'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 643557ef2dbbe784ab7daa711df4ec82, type: 2}
-  m_sharedMaterial: {fileID: -6748207592541611286, guid: 643557ef2dbbe784ab7daa711df4ec82, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 3818f94e4e0c49d4daadab7926b38a60, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
